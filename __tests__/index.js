@@ -7,7 +7,7 @@ import { setTimeout } from 'timers'
 // Setup Enzyme Adapter
 configure({ adapter: new Adapter() })
 
-const Image = require('../dist/pimg')
+const { react: Image } = require('../dist/pimg')
 
 describe('pimg', () => {
 	test('basic render', () => {

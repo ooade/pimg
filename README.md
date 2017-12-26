@@ -1,2 +1,3 @@
-# lqipc
-Low Quality Image Placeholder for Cloudinary
+# PIMG
+
+Progressive Image Rendering with Cloudinary

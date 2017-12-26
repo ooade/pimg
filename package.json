@@ -1,0 +1,48 @@
+{
+	"name": "pimg",
+	"version": "0.1.0",
+	"description": "Progressive Image Rendering with Cloudinary",
+	"main": "dist/pimg.js",
+	"module": "dist/pimg.es.js",
+	"umd": "dist/pimg.umd.js",
+	"scripts": {
+		"build": "npm-run-all rollup minify:* -s size",
+		"rollup": "rollup -c rollup.config.js",
+		"test": "jest",
+		"minify:cjs":
+			"uglifyjs $npm_package_main -cm -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
+		"minify:umd":
+			"uglifyjs $npm_package_umd -cm toplevel -o $npm_package_umd -p relative --in-source-map ${npm_package_umd}.map --source-map ${npm_package_umd}.map",
+		"size":
+			"echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_main | gzip-size)\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ooade/pimg.git"
+	},
+	"author": "Ademola Adegbuyi <ooade96@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ooade/pimg/issues"
+	},
+	"homepage": "https://github.com/ooade/pimg#readme",
+	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-plugin-external-helpers": "^6.22.0",
+		"babel-preset-backpack": "^0.4.3",
+		"babel-preset-react": "^6.24.1",
+		"enzyme": "^3.2.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"enzyme-to-json": "^3.3.0",
+		"gzip-size-cli": "^2.1.0",
+		"jest": "^22.0.4",
+		"npm-run-all": "^4.1.2",
+		"react": "^16.2.0",
+		"react-dom": "^16.2.0",
+		"rollup": "^0.53.0",
+		"rollup-plugin-babel": "^3.0.3",
+		"strip-json-comments": "^2.0.1",
+		"uglifyjs": "^2.4.11",
+		"whatwg-fetch": "^2.0.3"
+	}
+}

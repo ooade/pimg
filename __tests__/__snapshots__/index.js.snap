@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pimg basic render 1`] = `
+<Image
+  src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
+>
+  <img
+    className="pimg pimg__loading"
+    src="https://res.cloudinary.com/stackpie/image/upload/t_media_lib_thumb/v1513979515/-895520106_m1whb3.jpg"
+  />
+</Image>
+`;

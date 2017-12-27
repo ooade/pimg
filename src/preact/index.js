@@ -1,4 +1,4 @@
-import h, { Component } from 'preact'
+import { h, Component } from 'preact'
 import 'whatwg-fetch'
 
 class Image extends Component {

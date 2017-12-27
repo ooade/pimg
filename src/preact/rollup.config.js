@@ -3,7 +3,8 @@ import path from 'path'
 
 let pkg = require('../../package.json')
 
-const rename = name => path.resolve(name.replace('dist/', 'dist/preact/'))
+const rename = name =>
+	path.resolve(name.replace('dist/', 'dist/preact/').replace('/pimg', '/index'))
 
 export default {
 	input: path.join(__dirname + '/index.js'),

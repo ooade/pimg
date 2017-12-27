@@ -1,5 +1,5 @@
 const React = require('react')
-const { configure, mount, render } = require('enzyme')
+const { configure, mount } = require('enzyme')
 const Adapter = require('enzyme-adapter-react-16')
 import EnzymeToJSON from 'enzyme-to-json'
 import { setTimeout } from 'timers'
@@ -7,7 +7,7 @@ import { setTimeout } from 'timers'
 // Setup Enzyme Adapter
 configure({ adapter: new Adapter() })
 
-const { react: Image } = require('../dist/pimg')
+const Image = require('../dist/pimg')
 
 describe('pimg', () => {
 	test('basic render', () => {

@@ -27,11 +27,23 @@ Progressive Image Component with Cloudinary.
 
 It's quite simple to use.
 
+```sh
+npm install pimg
+```
+
 ```js
 import Image from 'pimg'; // react
 import Image from 'pimg/dist/preact'; //preact
 
 render(<Image src='cloudinary_image_url'>, document.getElementById('root'))
+```
+
+*Make sure you add this to your stylesheet:
+
+```css
+.pimg { width: 500px; } // You should change this to the width of your choice
+
+.pimg__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
 ```
 
 ### Examples

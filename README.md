@@ -15,7 +15,7 @@ Progressive Image Component with Cloudinary.
 
 - Lazy Loading of Images.
 
-- Works with P(R)eact.
+- Works with P(R)eact and Vue.
 
 ## Contents
 
@@ -34,6 +34,7 @@ npm install pimg
 ```js
 import Image from 'pimg'; // react
 import Image from 'pimg/dist/preact'; //preact
+import Image from 'pimg/dist/vue'; //vue
 
 render(<Image src='cloudinary_image_url'>, document.getElementById('root'))
 ```

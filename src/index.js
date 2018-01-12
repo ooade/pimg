@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import 'whatwg-fetch'
 
-class Image extends React.Component {
+class Image extends Component {
 	state = {
 		loading: true,
 		blob: null,

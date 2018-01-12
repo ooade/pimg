@@ -1,0 +1,8 @@
+.pimg {
+	width: 500px;
+}
+
+.pimg__loading {
+	filter: blur(5vw);
+	transform: scale(1.05);
+}

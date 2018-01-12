@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src='logo.svg' width="200" alt="Fonsole"/>
+<img src='logo.svg' width="200" alt="pimg"/>
 <br/>
 <a href="https://www.npmjs.org/package/pimg"><img src="https://img.shields.io/npm/v/pimg.svg?style=flat" alt="npm"></a> <a href="https://travis-ci.org/ooade/pimg"><img src="https://travis-ci.org/ooade/pimg.svg?branch=master" alt="travis"></a>
 </p>

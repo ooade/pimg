@@ -1,8 +1,10 @@
-.pimg {
+.pimg,
+.myImage {
 	width: 500px;
 }
 
-.pimg__loading {
+.pimg__loading,
+.myImage__thumbnail {
 	filter: blur(5vw);
 	transform: scale(1.05);
 }

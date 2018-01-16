@@ -22,7 +22,7 @@
 		}),
 		props: ['src'],
 		mounted() {
-			let thumb = this.src.replace('/upload/', '/upload/t_media_lib_thumb/')
+			let thumb = this.src.replace('/upload/', '/upload/c_thumb,w_30/')
 
 			this.thumb = thumb
 			fetch(this.src)

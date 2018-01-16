@@ -3,32 +3,113 @@ import 'whatwg-fetch'
 
 class Image extends Component {
 	state = {
-		loading: true,
 		blob: null,
-		thumb: null
+		loading: true,
+		thumbnail: null
 	}
 
 	componentDidMount() {
-		let thumb = this.props.src.replace('/upload/', '/upload/t_media_lib_thumb/')
+		const { children, src } = this.props
 
-		this.setState({ thumb })
+		// No Child ? Assume it is a cloudinary image and fetch
+		if (!children.length) {
+			let thumbnail = src.replace('/upload/', '/upload/c_thumb,w_30/')
 
-		fetch(this.props.src)
+			this.setState({
+				thumbnail
+			})
+
+			fetch(src)
+				.then(res => res.blob())
+				.then(res => {
+					let blob = URL.createObjectURL(res)
+					this.setState({
+						blob,
+						loading: false
+					})
+				})
+				.catch(err => console.log(err))
+		}
+	}
+
+	render() {
+		const { children, className, src } = this.props
+		const { blob, loading, thumbnail } = this.state
+
+		// No Child ? Just Render as usual
+		if (!children.length) {
+			if (loading) {
+				return (
+					<img
+						className={
+							className
+								? `${className} ${className}__loading`
+								: 'pimg pimg__loading'
+						}
+						src={thumbnail}
+					/>
+				)
+			}
+
+			return <img className={className ? className : 'pimg'} src={blob} />
+		}
+
+		// If a child is found, clone and send some prop
+		return React.cloneElement(children[0], {
+			image: src,
+			imageClassName: className
+		})
+	}
+}
+
+class Thumbnail extends Component {
+	state = {
+		blob: null,
+		loading: true,
+		thumbnail: null
+	}
+
+	componentDidMount() {
+		const { src, image } = this.props
+
+		this.setState({
+			thumbnail: src
+		})
+
+		fetch(image)
 			.then(res => res.blob())
 			.then(res => {
 				let blob = URL.createObjectURL(res)
-				this.setState({ blob, loading: false })
+				this.setState({
+					blob,
+					loading: false
+				})
 			})
 			.catch(err => console.log(err))
 	}
 
 	render() {
-		if (this.state.loading) {
-			return <img className="pimg pimg__loading" src={this.state.thumb} />
+		const { className, imageClassName } = this.props
+		const { blob, loading, thumbnail } = this.state
+
+		if (loading) {
+			return (
+				<img
+					className={
+						className && imageClassName
+							? `${className} ${imageClassName}`
+							: 'pimg pimg_loading'
+					}
+					src={thumbnail}
+				/>
+			)
 		}
 
-		return <img className="pimg" src={this.state.blob} />
+		return (
+			<img className={imageClassName ? imageClassName : 'pimg'} src={blob} />
+		)
 	}
 }
 
+export { Thumbnail }
 export default Image

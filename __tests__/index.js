@@ -14,7 +14,8 @@ describe('pimg', () => {
 		const image =
 			'https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg'
 
-		const thumb = image.replace('/upload/', '/upload/t_media_lib_thumb/')
+		// Set width to 30 by default
+		const thumb = image.replace('/upload/', '/upload/c_thumb,w_30/')
 
 		const wrapper = mount(<Image src={image} />)
 

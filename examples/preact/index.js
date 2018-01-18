@@ -6,7 +6,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Hello, World!</h1>
+				<h1> Hello, World! </h1>{' '}
 				<Image
 					className="myImage"
 					src="https://res.cloudinary.com/stackpie/image/upload/v1514275012/assassins_creed_revelations_concept_art-wallpaper-1366x768_qdl9vo.jpg"
@@ -15,11 +15,7 @@ export default class App extends Component {
 						className="myImage__thumb"
 						src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_10/v1514275012/assassins_creed_revelations_concept_art-wallpaper-1366x768_qdl9vo.jpg"
 					/>
-					<Thumbnail
-						className="myImage__thumb"
-						src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_10/v1514275012/assassins_creed_revelations_concept_art-wallpaper-1366x768_qdl9vo.jpg"
-					/>
-				</Image>
+				</Image>{' '}
 			</div>
 		)
 	}

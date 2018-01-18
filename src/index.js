@@ -8,27 +8,37 @@ class Image extends Component {
 		thumbnail: null
 	}
 
+	setBlob = blob => {
+		this.setState({ blob })
+	}
+
+	setThumbnail = thumbnail => {
+		this.setState({ thumbnail })
+	}
+
+	setLoading = loading => {
+		this.setState({ loading })
+	}
+
+	fetchImage = src => {
+		fetch(src)
+			.then(res => res.blob())
+			.then(res => {
+				this.setBlob(URL.createObjectURL(res))
+				this.setLoading(false)
+			})
+			.catch(err => console.log(err))
+	}
+
 	componentDidMount() {
 		const { children, src } = this.props
 
 		// No Child ? Assume it is a cloudinary image and fetch
-		if (!children.length) {
+		if (!children) {
 			let thumbnail = src.replace('/upload/', '/upload/c_thumb,w_30/')
 
-			this.setState({
-				thumbnail
-			})
-
-			fetch(src)
-				.then(res => res.blob())
-				.then(res => {
-					let blob = URL.createObjectURL(res)
-					this.setState({
-						blob,
-						loading: false
-					})
-				})
-				.catch(err => console.log(err))
+			this.fetchImage(src)
+			this.setThumbnail(thumbnail)
 		}
 	}
 
@@ -37,7 +47,7 @@ class Image extends Component {
 		const { blob, loading, thumbnail } = this.state
 
 		// No Child ? Just Render as usual
-		if (!children.length) {
+		if (!children) {
 			if (loading) {
 				return (
 					<img
@@ -55,42 +65,29 @@ class Image extends Component {
 		}
 
 		// If a child is found, clone and send some prop
-		return React.cloneElement(children[0], {
+		return React.cloneElement(children, {
+			blob,
+			fetchImage: this.fetchImage,
 			image: src,
-			imageClassName: className
+			imageClassName: className,
+			loading,
+			setThumbnail: this.setThumbnail,
+			thumbnail
 		})
 	}
 }
 
 class Thumbnail extends Component {
-	state = {
-		blob: null,
-		loading: true,
-		thumbnail: null
-	}
-
 	componentDidMount() {
-		const { src, image } = this.props
+		const { fetchImage, image, setThumbnail, src } = this.props
 
-		this.setState({
-			thumbnail: src
-		})
+		setThumbnail(src)
 
-		fetch(image)
-			.then(res => res.blob())
-			.then(res => {
-				let blob = URL.createObjectURL(res)
-				this.setState({
-					blob,
-					loading: false
-				})
-			})
-			.catch(err => console.log(err))
+		fetchImage(image)
 	}
 
 	render() {
-		const { className, imageClassName } = this.props
-		const { blob, loading, thumbnail } = this.state
+		const { blob, className, imageClassName, loading, thumbnail } = this.props
 
 		if (loading) {
 			return (

@@ -7,7 +7,7 @@
 
 # PIMG
 
-Progressive Image Component with Cloudinary.
+Progressive Image Component (Initially Implemented for Cloudinary Images). Now works with other sources :tada:
 
 ## Features
 
@@ -20,6 +20,9 @@ Progressive Image Component with Cloudinary.
 ## Contents
 
 - [Usage](#usage)
+- [Basic Usage](#basic-usage)
+- [Usage with Thumbnail](#usage-with-thumbnail)
+- [Custom ClassName](#custom-classname)
 - [Examples](#examples)
 - [Goals](#goals)
 
@@ -31,12 +34,49 @@ It's quite simple to use.
 npm install pimg
 ```
 
+#### Basic Usage
+
 ```js
 import Image from 'pimg'; // react
 import Image from 'pimg/dist/preact'; //preact
 import Image from 'pimg/dist/vue'; //vue
 
-render(<Image src='cloudinary_image_url'>, document.getElementById('root'))
+render(<Image src='imageURL' />, document.getElementById('root'))
+```
+
+*Make sure you add this to your stylesheet:
+
+```css
+.pimg { width: 500px; } // You should change this to the width of your choice
+
+.pimg__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
+```
+
+#### Usage with Thumbnail
+```js
+import Image from 'pimg'; // react
+import Image from 'pimg/dist/preact'; //preact
+// Thumbnail on Vue is a WIP
+
+render(<Image src='imageURL'><Thumbnail src='thumbnailURL'/></Image>, document.getElementById('root'))
+```
+
+*Make sure you add this to your stylesheet:
+
+```css
+.pimg { width: 500px; } // You should change this to the width of your choice
+
+.pimg__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
+```
+
+#### Custom ClassName
+Components(Image and Thumbnail) now supports custom classNames which will be used if provided.
+
+```js
+import Image from 'pimg'; // react
+import Image from 'pimg/dist/preact'; //preact
+
+render(<Image className="myImage" src='imageURL' />, document.getElementById('root'))
 ```
 
 *Make sure you add this to your stylesheet:

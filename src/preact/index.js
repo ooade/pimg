@@ -1,34 +1,113 @@
-import { h, Component } from 'preact'
+import { h, Component, cloneElement } from 'preact'
 import 'whatwg-fetch'
 
 class Image extends Component {
 	state = {
-		loading: true,
 		blob: null,
-		thumb: null
+		loading: true,
+		thumbnail: null
 	}
 
-	componentDidMount() {
-		let thumb = this.props.src.replace('/upload/', '/upload/t_media_lib_thumb/')
+	setBlob = blob => {
+		this.setState({ blob })
+	}
 
-		this.setState({ thumb })
+	setThumbnail = thumbnail => {
+		this.setState({ thumbnail })
+	}
 
-		fetch(this.props.src)
+	setLoading = loading => {
+		this.setState({ loading })
+	}
+
+	fetchImage = src => {
+		fetch(src)
 			.then(res => res.blob())
 			.then(res => {
-				let blob = URL.createObjectURL(res)
-				this.setState({ blob, loading: false })
+				this.setBlob(URL.createObjectURL(res))
+				this.setLoading(false)
 			})
 			.catch(err => console.log(err))
 	}
 
+	componentDidMount() {
+		const { children, src } = this.props
+
+		// No Child ? Assume it is a cloudinary image and fetch
+		// Note: VNode is always an array in preact
+		if (!children.length) {
+			let thumbnail = src.replace('/upload/', '/upload/c_thumb,w_30/')
+
+			this.fetchImage(src)
+			this.setThumbnail(thumbnail)
+		}
+	}
+
 	render() {
-		if (this.state.loading) {
-			return <img className="pimg pimg__loading" src={this.state.thumb} />
+		const { children, className, src } = this.props
+		const { blob, loading, thumbnail } = this.state
+
+		// No Child ? Just Render as usual
+		if (!children.length) {
+			if (loading) {
+				return (
+					<img
+						className={
+							className
+								? `${className} ${className}__loading`
+								: 'pimg pimg__loading'
+						}
+						src={thumbnail}
+					/>
+				)
+			}
+
+			return <img className={className ? className : 'pimg'} src={blob} />
 		}
 
-		return <img className="pimg" src={this.state.blob} />
+		// If a child is found, clone and send some prop
+		return cloneElement(children[0], {
+			blob,
+			fetchImage: this.fetchImage,
+			image: src,
+			imageClassName: className,
+			loading,
+			setThumbnail: this.setThumbnail,
+			thumbnail
+		})
+	}
+}
+
+class Thumbnail extends Component {
+	componentDidMount() {
+		const { fetchImage, image, setThumbnail, src } = this.props
+
+		setThumbnail(src)
+
+		fetchImage(image)
+	}
+
+	render() {
+		const { blob, className, imageClassName, loading, thumbnail } = this.props
+
+		if (loading) {
+			return (
+				<img
+					className={
+						className && imageClassName
+							? `${className} ${imageClassName}`
+							: 'pimg pimg_loading'
+					}
+					src={thumbnail}
+				/>
+			)
+		}
+
+		return (
+			<img className={imageClassName ? imageClassName : 'pimg'} src={blob} />
+		)
 	}
 }
 
 export default Image
+export { Thumbnail }

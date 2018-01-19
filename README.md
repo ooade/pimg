@@ -79,12 +79,12 @@ import Image from 'pimg/dist/preact'; //preact
 render(<Image className="myImage" src='imageURL' />, document.getElementById('root'))
 ```
 
-*Make sure you add this to your stylesheet:
+*Then your stylesheet:
 
 ```css
-.pimg { width: 500px; } // You should change this to the width of your choice
+.myImage { width: 500px; } // You should change this to the width of your choice
 
-.pimg__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
+.myImage__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
 ```
 
 ### Examples

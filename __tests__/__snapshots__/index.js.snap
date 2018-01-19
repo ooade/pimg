@@ -1,12 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pimg basic render 1`] = `
+exports[`Image can take a Thumnail child component 1`] = `
+<Image
+  src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
+>
+  <Thumbnail
+    blob={null}
+    fetchImage={[Function]}
+    image="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
+    loading={true}
+    setThumbnail={[Function]}
+    src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
+    thumbnail="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
+  >
+    <img
+      className="pimg pimg_loading"
+      src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
+    />
+  </Thumbnail>
+</Image>
+`;
+
+exports[`pimg renders correctly 1`] = `
 <Image
   src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
 >
   <img
     className="pimg pimg__loading"
-    src="https://res.cloudinary.com/stackpie/image/upload/t_media_lib_thumb/v1513979515/-895520106_m1whb3.jpg"
+    src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
   />
 </Image>
 `;

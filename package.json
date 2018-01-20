@@ -1,6 +1,6 @@
 {
 	"name": "pimg",
-	"version": "0.4.1",
+	"version": "0.4.2",
 	"description": "Progressive Image Component with Cloudinary",
 	"main": "dist/pimg.js",
 	"module": "dist/pimg.es.js",
@@ -11,12 +11,9 @@
 		"rollup:preact": "rollup -c src/preact/rollup.config.js",
 		"rollup:vue": "rollup -c src/vue/rollup.config.js",
 		"test": "jest",
-		"minify:cjs":
-			"uglifyjs $npm_package_main -cm -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
-		"minify:umd":
-			"uglifyjs $npm_package_umd -cm toplevel -o $npm_package_umd -p relative --in-source-map ${npm_package_umd}.map --source-map ${npm_package_umd}.map",
-		"size":
-			"echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_main | gzip-size)\""
+		"minify:cjs": "uglifyjs $npm_package_main -cm -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
+		"minify:umd": "uglifyjs $npm_package_umd -cm toplevel -o $npm_package_umd -p relative --in-source-map ${npm_package_umd}.map --source-map ${npm_package_umd}.map",
+		"size": "echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_main | gzip-size)\""
 	},
 	"repository": {
 		"type": "git",
@@ -49,8 +46,5 @@
 		"uglifyjs": "^2.4.11",
 		"vue-template-compiler": "^2.5.13",
 		"whatwg-fetch": "^2.0.3"
-	},
-	"dependencies": {
-		"next": "^4.2.2"
 	}
 }

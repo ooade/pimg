@@ -44,7 +44,7 @@ class Image extends Component {
 	}
 
 	render() {
-		const { children, className, src } = this.props
+		const { children, className, loadingClassName, src } = this.props
 		const { blob, loading, thumbnail } = this.state
 
 		// No Child ? Just Render as usual
@@ -54,7 +54,7 @@ class Image extends Component {
 					<img
 						className={
 							className
-								? `${className} ${className}__loading`
+								? `${className} ${loadingClassName || className + '__loading'}`
 								: 'pimg pimg__loading'
 						}
 						src={thumbnail}

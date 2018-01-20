@@ -1,6 +1,6 @@
 {
 	"name": "pimg",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "Progressive Image Component with Cloudinary",
 	"main": "dist/pimg.js",
 	"module": "dist/pimg.es.js",

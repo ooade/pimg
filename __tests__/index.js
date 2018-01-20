@@ -48,7 +48,15 @@ describe('Image', () => {
 		}
 	})
 
-	test('uses the className passed when loading', () => {
+	test('uses the loadingClassName passed when loading', () => {
+		const component = shallow(<Image className="myImage" loadingClassName="image_is_loading" src={image} />)
+
+		if (component.state().loading) {
+			expect(component.props().className).toBe('myImage image_is_loading')
+		}
+	})
+
+	test('appends `__loading` if loadingClassName isn\'t passed', () => {
 		const component = shallow(<Image className="myImage" src={image} />)
 
 		if (component.state().loading) {

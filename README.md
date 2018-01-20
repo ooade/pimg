@@ -87,6 +87,16 @@ render(<Image className="myImage" src='imageURL' />, document.getElementById('ro
 .myImage__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
 ```
 
+`loadingClassName` should be passed essentially if you have more than a className attached or just for better customization.
+
+```js
+render(<Image className="myImage" loadingClassName="myImage_is_loading" src="imageURL" />)
+```
+```css
+.myImage_is_loading{/* Some stylesheet */}
+```
+
+
 ### Examples
 
  - [Simple React Example](https://codesandbox.io/s/jzn7q44zzv)

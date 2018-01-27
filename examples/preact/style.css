@@ -4,7 +4,7 @@
 }
 
 .pimg__loading,
-.myImage__thumbnail {
-	filter: blur(5vw);
-	transform: scale(1.05);
+.myImage__loading {
+	border: 1px solid #ddd;
+	filter: blur(1vw);
 }

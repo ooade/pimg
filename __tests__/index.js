@@ -40,6 +40,14 @@ describe('Image', () => {
 		expect(EnzymeToJSON(component)).toMatchSnapshot()
 	})
 
+	test('can take a thumbnail prop', () => {
+		const component = mount(
+			<Image src={image} thumbnail='http://myThumb' />
+		)
+
+		expect(EnzymeToJSON(component)).toMatchSnapshot()
+	})
+
 	test('uses the default classNames when loading', () => {
 		const component = shallow(<Image src={image} />)
 

@@ -11,13 +11,23 @@ exports[`Image can take a Thumnail child component 1`] = `
     loading={true}
     setThumbnail={[Function]}
     src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
-    thumbnail="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
   >
     <img
       className="pimg pimg_loading"
-      src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
     />
   </Thumbnail>
+</Image>
+`;
+
+exports[`Image can take a thumbnail prop 1`] = `
+<Image
+  src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
+  thumbnail="http://myThumb"
+>
+  <img
+    className="pimg pimg__loading"
+    src="http://myThumb"
+  />
 </Image>
 `;
 

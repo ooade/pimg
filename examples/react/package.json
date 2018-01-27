@@ -5,14 +5,17 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "cross-env NODE_ENV=development parcel index.html ",
+		"dev": "cross-env NODE_ENV=development parcel index.html --open",
+		"start": "parcel index.html --open",
 		"build": "cross-env NODE_ENV=production parcel build index.html --no-minify --public-url /"
 	},
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
 		"babel-preset-react-app": "^3.1.1",
+		"pimg": "^1.0.0-alpha.1",
 		"react": "^16.2.0",
+		"react-codemirror": "^1.0.0",
 		"react-dom": "^16.2.0"
 	},
 	"devDependencies": {

@@ -5,20 +5,15 @@ class Image extends Component {
 	state = {
 		blob: null,
 		loading: true,
+		delayed: false,
 		thumbnail: null
 	}
 
-	setBlob = blob => {
-		this.setState({ blob })
-	}
+	setBlob = blob => this.setState({ blob })
 
-	setThumbnail = thumbnail => {
-		this.setState({ thumbnail })
-	}
+	setThumbnail = thumbnail => this.setState({ thumbnail })
 
-	setLoading = loading => {
-		this.setState({ loading })
-	}
+	setLoading = loading => this.setState({ loading })
 
 	fetchImage = src => {
 		fetch(src)
@@ -30,22 +25,78 @@ class Image extends Component {
 			.catch(err => console.log(err))
 	}
 
+	scroller = (src, imgTop) => {
+		if (window.scrollY >= imgTop && this.state.delayed) {
+			this.setState({ delayed: false })
+			this.fetchImage(src)
+		}
+	}
+
+	getYPosition = element => {
+		let yPosition = 0
+
+		while (element) {
+			yPosition += element.offsetTop - element.scrollTop + element.clientTop
+			element = element.offsetParent
+		}
+
+		return yPosition
+	}
+
+	delayFetchingImage = src => {
+		this.setState({ delayed: true })
+
+		const image = this.imgElement
+
+		window.addEventListener(
+			'scroll',
+			this.scroller.bind(this, src, this.getYPosition(image)),
+			false
+		)
+
+		window.addEventListener(
+			'resize',
+			this.scroller.bind(this, src, this.getYPosition(image)),
+			false
+		)
+	}
+
 	componentDidMount() {
-		const { children, src } = this.props
+		const { children, src, scrollToReveal, thumbnail } = this.props
 
 		// No Child ? Assume it is a cloudinary image and fetch
 		// Note: VNode is always an array in preact
 		if (!children.length) {
-			let thumbnail = src.replace('/upload/', '/upload/c_thumb,w_30/')
+			let thumbnail =
+				thumbnail || src.replace('/upload/', '/upload/c_thumb,w_30/')
 
-			this.fetchImage(src)
+			if (!scrollToReveal) {
+				this.fetchImage(src)
+			} else {
+				this.delayFetchingImage(src)
+			}
+
 			this.setThumbnail(thumbnail)
 		}
 	}
 
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.scroller, false)
+		window.removeEventListener('resize', this.scroller, false)
+	}
+
 	render() {
-		const { children, className, loadingClassName, src } = this.props
-		const { blob, loading, thumbnail } = this.state
+		const {
+			children,
+			className,
+			loadingClassName,
+			scrollToReveal,
+			src,
+			thumbnail,
+			...rest
+		} = this.props
+
+		const { blob, loading } = this.state
 
 		// No Child ? Just Render as usual
 		if (!children.length) {
@@ -57,12 +108,18 @@ class Image extends Component {
 								? `${className} ${loadingClassName || className + '__loading'}`
 								: 'pimg pimg__loading'
 						}
-						src={thumbnail}
+						src={thumbnail || this.state.thumbnail}
+						ref={i => {
+							this.imgElement = i
+						}}
+						{...rest}
 					/>
 				)
 			}
 
-			return <img className={className ? className : 'pimg'} src={blob} />
+			return (
+				<img className={className ? className : 'pimg'} src={blob} {...rest} />
+			)
 		}
 
 		// If a child is found, clone and send some prop

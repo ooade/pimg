@@ -30,6 +30,12 @@ describe('Image', () => {
 		}
 	})
 
+	test('src is emptyString if omitted', () => {
+		const component = mount(<Image/>)
+
+		expect(component.props().src).toBe('')
+	})
+
 	test('can take a Thumnail child component', () => {
 		const component = mount(
 			<Image src={image}>

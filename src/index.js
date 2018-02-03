@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 import 'whatwg-fetch'
 
 class Image extends Component {
@@ -163,6 +164,15 @@ class Thumbnail extends Component {
 			<img className={imageClassName ? imageClassName : 'pimg'} src={blob} />
 		)
 	}
+}
+
+
+Image.propTypes = {
+	src: PropTypes.string.isRequired
+}
+
+Image.defaultProps = {
+	src: ''
 }
 
 export default Image

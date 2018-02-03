@@ -166,5 +166,9 @@ class Thumbnail extends Component {
 	}
 }
 
+Image.defaultProps = {
+	src: ''
+}
+
 export default Image
 export { Thumbnail }

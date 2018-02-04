@@ -8,8 +8,8 @@ class Provider extends Component {
 			<div className="card" style={{ padding: 20, margin: 10 }}>
 				<div className="card-body">
 					<h5 className="card-title">{this.props.title}</h5>
-				</div>
 				{this.props.children}
+			</div>
 			</div>
 		)
 	}
@@ -39,10 +39,10 @@ const WithThumbnail = () => (
 )
 
 const ScrollToReveal = () => (
-	<Provider title="ScrollToReveal">
+	<Provider title="Data Saver Mode - Click to load">
 		<Image
 			className="myImage"
-			scrollToReveal
+			dataSaver
 			style={{ width: 200 }}
 			src="https://res.cloudinary.com/stackpie/image/upload/v1511099014/IMG_20161127_203939_073_nwdnvv.jpg"
 		/>
@@ -63,14 +63,16 @@ const ScrollToRevealWithThumbnailProp = () => (
 const App = () => (
 	<div>
 		<nav class="navbar navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">
-				Pimg With Preact
-			</a>
+			<div className="container">
+				<a class="navbar-brand" href="javascript:void()">Pimg With Preact</a>
+			</div>
 		</nav>
-		<SimpleImplementation />
-		<WithThumbnail />
-		<ScrollToReveal />
-		<ScrollToRevealWithThumbnailProp />
+		<div className="container">
+			<SimpleImplementation />
+			<WithThumbnail />
+			<ScrollToRevealWithThumbnailProp />
+			<ScrollToReveal />
+		</div>
 	</div>
 )
 

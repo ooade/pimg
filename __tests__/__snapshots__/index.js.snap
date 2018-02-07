@@ -2,6 +2,7 @@
 
 exports[`Image can take a Thumnail child component 1`] = `
 <Image
+  dataSaver={false}
   src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
 >
   <Thumbnail
@@ -21,23 +22,33 @@ exports[`Image can take a Thumnail child component 1`] = `
 
 exports[`Image can take a thumbnail prop 1`] = `
 <Image
+  dataSaver={false}
   src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
   thumbnail="http://myThumb"
 >
-  <img
-    className="pimg pimg__loading"
-    src="http://myThumb"
-  />
+  <div
+    className="pimg__wrapper"
+  >
+    <img
+      className="pimg pimg__loading"
+      src="http://myThumb"
+    />
+  </div>
 </Image>
 `;
 
 exports[`pimg renders correctly 1`] = `
 <Image
+  dataSaver={false}
   src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
 >
-  <img
-    className="pimg pimg__loading"
-    src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
-  />
+  <div
+    className="pimg__wrapper"
+  >
+    <img
+      className="pimg pimg__loading"
+      src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
+    />
+  </div>
 </Image>
 `;

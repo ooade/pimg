@@ -58,7 +58,7 @@ describe('Image', () => {
 		const component = shallow(<Image src={image} />)
 
 		if (component.state().loading) {
-			expect(component.props().className).toBe('pimg pimg__loading')
+			expect(component.childAt(0).props().className).toBe('pimg pimg__loading')
 		}
 	})
 
@@ -66,7 +66,7 @@ describe('Image', () => {
 		const component = shallow(<Image className="myImage" loadingClassName="image_is_loading" src={image} />)
 
 		if (component.state().loading) {
-			expect(component.props().className).toBe('myImage image_is_loading')
+			expect(component.childAt(0).props().className).toBe('myImage image_is_loading')
 		}
 	})
 
@@ -74,7 +74,7 @@ describe('Image', () => {
 		const component = shallow(<Image className="myImage" src={image} />)
 
 		if (component.state().loading) {
-			expect(component.props().className).toBe('myImage myImage__loading')
+			expect(component.childAt(0).props().className).toBe('myImage myImage__loading')
 		}
 	})
 })

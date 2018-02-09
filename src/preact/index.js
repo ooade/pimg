@@ -67,7 +67,7 @@ class Image extends Component {
 	}
 
 	componentDidMount() {
-		const { children, src, dataSaver, scrollToReveal, thumbnail } = this.props
+		const { children, dataSaver, src, scrollToReveal, thumbnail } = this.props
 
 		// No Child ? Assume it is a cloudinary image and fetch
 		// Note: VNode is always an array in preact
@@ -105,9 +105,9 @@ class Image extends Component {
 		const {
 			children,
 			className,
+			dataSaver,
 			loadingClassName,
 			scrollToReveal,
-			dataSaver,
 			src,
 			thumbnail,
 			...rest
@@ -186,8 +186,8 @@ class Thumbnail extends Component {
 }
 
 Image.defaultProps = {
-	src: '',
-	dataSaver: false
+	dataSaver: false,
+	src: ''
 }
 
 export default Image

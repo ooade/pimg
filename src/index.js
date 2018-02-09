@@ -68,7 +68,7 @@ class Image extends Component {
 	}
 
 	componentDidMount() {
-		const { children, src, dataSaver, scrollToReveal, thumbnail } = this.props
+		const { children, dataSaver, src, scrollToReveal, thumbnail } = this.props
 
 		// No Child ? Assume it is a cloudinary image and fetch
 		if (!children) {
@@ -105,9 +105,9 @@ class Image extends Component {
 		const {
 			children,
 			className,
+			dataSaver,
 			loadingClassName,
 			scrollToReveal,
-			dataSaver,
 			src,
 			thumbnail,
 			...rest
@@ -190,8 +190,8 @@ Image.propTypes = {
 }
 
 Image.defaultProps = {
-	src: '',
-	dataSaver: false
+	dataSaver: false,
+	src: ''
 }
 
 export default Image

@@ -1,4 +1,5 @@
 
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 <p align="center">
 <img src="https://res.cloudinary.com/stackpie/image/upload/v1517590047/pimg_logo_wmqgco.svg" width="200" alt="pimg"/>
 <br/>
@@ -115,6 +116,18 @@ render(<Image className="myImage" loadingClassName="myImage_is_loading" src="ima
 ### Contributions
 
 Feel free to send a PR.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars1.githubusercontent.com/u/11811904?v=4" width="100px;"/><br /><sub><b>マティアス</b></sub>](https://ademola.adegbuyi.me)<br />[💻](https://github.com/ooade/pimg/commits?author=ooade "Code") [📖](https://github.com/ooade/pimg/commits?author=ooade "Documentation") [⚠️](https://github.com/ooade/pimg/commits?author=ooade "Tests") [💡](#example-ooade "Examples") | [<img src="https://avatars0.githubusercontent.com/u/5154605?v=4" width="100px;"/><br /><sub><b>Olushi Luqman O.</b></sub>](https://twitter.com/codeshifu)<br />[💻](https://github.com/ooade/pimg/commits?author=codeshifu "Code") |
+| :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
 
 ### License
 

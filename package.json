@@ -6,6 +6,7 @@
 	"module": "dist/pimg.es.js",
 	"umd": "dist/pimg.umd.js",
 	"scripts": {
+		"contributors:add": "all-contributors add",
 		"build": "npm-run-all rollup rollup:* minify:* -s size",
 		"rollup": "rollup -c rollup.config.js",
 		"rollup:preact": "rollup -c src/preact/rollup.config.js",
@@ -26,6 +27,7 @@
 	},
 	"homepage": "https://github.com/ooade/pimg#readme",
 	"devDependencies": {
+		"all-contributors-cli": "^4.10.1",
 		"babel-core": "^6.26.0",
 		"babel-plugin-external-helpers": "^6.22.0",
 		"babel-preset-backpack": "^0.4.3",

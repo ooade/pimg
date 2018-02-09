@@ -1,5 +1,3 @@
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 <p align="center">
 <img src="https://res.cloudinary.com/stackpie/image/upload/v1517590047/pimg_logo_wmqgco.svg" width="200" alt="pimg"/>
 <br/>

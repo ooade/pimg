@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 import 'whatwg-fetch'
 
 class Image extends Component {
 	state = {
-			blob: null,
-			loading: true,
-			delayed: false,
-			thumbnail: null
-		}
-	
+		blob: null,
+		loading: true,
+		delayed: false,
+		thumbnail: null
+	}
+
 	setBlob = blob => this.setState({ blob })
 
 	setThumbnail = thumbnail => this.setState({ thumbnail })
@@ -46,14 +46,14 @@ class Image extends Component {
 
 	delayFetchingImage = src => this.setState({ delayed: true })
 
-	dataSaverMode = (src) => this.delayFetchingImage(src)
-	
+	dataSaverMode = src => this.delayFetchingImage(src)
+
 	image = () => this.imgElement
 
 	scrollToReveal(src) {
 		this.delayFetchingImage(src)
 		const image = this.image()
-		
+
 		window.addEventListener(
 			'scroll',
 			this.scroller.bind(this, src, this.getYPosition(image)),
@@ -72,15 +72,16 @@ class Image extends Component {
 
 		// No Child ? Assume it is a cloudinary image and fetch
 		if (!children) {
-			let thumbnail = thumbnail || src.replace('/upload/', '/upload/c_thumb,w_30/')
+			let thumbnail =
+				thumbnail || src.replace('/upload/', '/upload/c_thumb,w_30/')
 
-				if (dataSaver || (dataSaver && scrollToReveal)) {
-					this.dataSaverMode(src)
-				} else if (!dataSaver && scrollToReveal) {
-					this.scrollToReveal(src)
-				} else {
-					this.fetchImage(src)
-				}
+			if (dataSaver || (dataSaver && scrollToReveal)) {
+				this.dataSaverMode(src)
+			} else if (!dataSaver && scrollToReveal) {
+				this.scrollToReveal(src)
+			} else {
+				this.fetchImage(src)
+			}
 
 			this.setThumbnail(thumbnail)
 		}
@@ -91,11 +92,14 @@ class Image extends Component {
 		window.removeEventListener('resize', this.scroller, false)
 	}
 
-	shouldRenderButton (dataSaver) {
+	shouldRenderButton(dataSaver) {
 		if (!dataSaver) return
-		
+
 		return (
-			<button className='pimg__btn' onClick={dataSaver ? () => this.fetchImage(this.props.src) : null}>
+			<button
+				className="pimg__btn"
+				onClick={dataSaver ? () => this.fetchImage(this.props.src) : null}
+			>
 				Load image
 			</button>
 		)
@@ -117,15 +121,15 @@ class Image extends Component {
 		// No Child ? Just Render as usual
 		if (!children) {
 			if (loading) {
-				const classes = className 
-								? `${className} ${loadingClassName || className + '__loading'}` 
-								: 'pimg pimg__loading'
+				const classes = className
+					? `${className} ${loadingClassName || className + '__loading'}`
+					: 'pimg pimg__loading'
 				return (
-					<div className='pimg__wrapper'>
+					<div className="pimg__wrapper">
 						<img
 							className={classes}
 							src={thumbnail || this.state.thumbnail}
-							ref={i => this.imgElement = i}
+							ref={i => (this.imgElement = i)}
 							{...rest}
 						/>
 						{this.shouldRenderButton(dataSaver)}
@@ -134,8 +138,12 @@ class Image extends Component {
 			}
 
 			return (
-				<div className='pimg__wrapper'>
-					<img className={className ? className : 'pimg'} src={blob} {...rest} />
+				<div className="pimg__wrapper">
+					<img
+						className={className ? className : 'pimg'}
+						src={blob}
+						{...rest}
+					/>
 				</div>
 			)
 		}
@@ -183,7 +191,6 @@ class Thumbnail extends Component {
 		)
 	}
 }
-
 
 Image.propTypes = {
 	src: PropTypes.string.isRequired

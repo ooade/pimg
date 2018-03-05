@@ -14,7 +14,6 @@
 </template>
 
 <script>
-console.log(this)
 export default {
 	data: () => ({
 		loading: true,

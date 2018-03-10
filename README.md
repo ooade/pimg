@@ -105,11 +105,11 @@ render(<Image className="myImage" loadingClassName="myImage_is_loading" src="ima
 
 ### Goals
 
-- Scroll to viewing of images.
+- [x] Scroll to viewing of images.
 
-- Support non-cloudinary images.
+- [x] Support non-cloudinary images.
 
-- Working with other VDOM libraries.
+- [ ] Working with other VDOM libraries.
 
 ### Contributions
 

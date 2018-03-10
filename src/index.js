@@ -32,7 +32,7 @@ class Image extends Component {
 
 	image = () => this.imgElement
 
-	scrollToReveal(src) {
+	scrollToReveal = src => {
 		try {
 			let observer = new IntersectionObserver(entries => {
 				let image = entries[0]

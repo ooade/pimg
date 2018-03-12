@@ -1,5 +1,3 @@
-
-
 ## React
 
 ```js
@@ -16,8 +14,6 @@ import Image from 'pimg/preact';
 render(<Image src="someURL" />, document.querySelector('.root'));
 ```
 
-
-
 ## Vue
 
 #### Independently
@@ -29,11 +25,11 @@ render(<Image src="someURL" />, document.querySelector('.root'));
 
 <script type="text/javascript">
     import pimg from 'pimg/vue';
-    
+
     export default {
-	components: {
+    components: {
             pimg
-	}
+        }
     }
 </script>
 ```

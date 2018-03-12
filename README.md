@@ -19,7 +19,10 @@ npm install --save pimg
 
 This assumes you are using [npm](https://www.npmjs.com/) as your package manager.
 
-### Contributions
+## Documentation
+The documentation for this project can be found [here](https://ooade.gitbooks.io/pimg/).
+
+## Contributions
 
 Feel free to send a PR.
 
@@ -29,7 +32,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars1.githubusercontent.com/u/11811904?v=4" width="100px;"/><br /><sub><b>マティアス</b></sub>](https://ademola.adegbuyi.me)<br />[💻](https://github.com/ooade/pimg/commits?author=ooade "Code") [📖](https://github.com/ooade/pimg/commits?author=ooade "Documentation") [⚠️](https://github.com/ooade/pimg/commits?author=ooade "Tests") [💡](#example-ooade "Examples") | [<img src="https://avatars0.githubusercontent.com/u/5154605?v=4" width="100px;"/><br /><sub><b>Olushi Luqman O.</b></sub>](https://twitter.com/codeshifu)<br />[💻](https://github.com/ooade/pimg/commits?author=codeshifu "Code") |
+| [<img src="https://avatars1.githubusercontent.com/u/11811904?v=4" width="100px;"/><br /><sub><b>Ademola Adegbuyi</b></sub>](https://ademola.adegbuyi.me)<br />[💻](https://github.com/ooade/pimg/commits?author=ooade "Code") [📖](https://github.com/ooade/pimg/commits?author=ooade "Documentation") [⚠️](https://github.com/ooade/pimg/commits?author=ooade "Tests") [💡](#example-ooade "Examples") | [<img src="https://avatars0.githubusercontent.com/u/5154605?v=4" width="100px;"/><br /><sub><b>Olushi Luqman O.</b></sub>](https://twitter.com/codeshifu)<br />[💻](https://github.com/ooade/pimg/commits?author=codeshifu "Code") |
 | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

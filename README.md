@@ -1,117 +1,23 @@
-<p align="center">
-<img src="https://res.cloudinary.com/stackpie/image/upload/v1517590047/pimg_logo_wmqgco.svg" width="200" alt="pimg"/>
-<br/>
-<a href="https://www.npmjs.org/package/pimg"><img src="https://img.shields.io/npm/v/pimg.svg?style=flat" alt="npm"/></a> <a href="https://travis-ci.org/ooade/pimg"><img src="https://travis-ci.org/ooade/pimg.svg?branch=master" alt="travis"/></a>
-<a href="https://www.npmjs.com/package/pimg"><img src="https://img.shields.io/npm/dm/pimg.svg" alt="npm" /></a>
-</p>
+# <a href="https://ooade.gitbooks.io/pimg"> <img src='logo.svg' width="200" alt="pimg logo"/> </a>
 
+Pimg is a Progessive Image Component For React, Preact and Vue.js.
 
-# PIMG
+It helps in lazy loading of images in a nice and cool way.
 
-Progressive Image Component (Initially Implemented for Cloudinary Images). Now works with other sources :tada:
+It's just 20 Bytes (gzipped).
 
-## Features
+[![build status](https://img.shields.io/travis/ooade/pimg/master.svg?style=flat-square)](https://travis-ci.org/ooade/pimg)
+[![npm version](https://img.shields.io/npm/v/pimg.svg?style=flat-square)](https://www.npmjs.com/package/pimg)
+[![npm downloads](https://img.shields.io/npm/dm/pimg.svg?style=flat-square)](https://www.npmjs.com/package/pimg)
 
-- ~20B gzipped.
+## Installation
+To install:
 
-- Lazy Loading of Images.
-
-- Works with P(R)eact and Vue.
-
-## Contents
-
-- [Usage](#usage)
-- [Basic Usage](#basic-usage)
-- [Usage with Thumbnail](#usage-with-thumbnail)
-- [Custom ClassName](#custom-classname)
-- [Examples](#examples)
-- [Goals](#goals)
-
-### Usage
-
-It's quite simple to use.
-
-```sh
-npm install pimg
+```
+npm install --save pimg
 ```
 
-#### Basic Usage
-
-```js
-import Image from 'pimg'; // react
-import Image from 'pimg/dist/preact'; //preact
-import Image from 'pimg/dist/vue'; //vue
-
-render(<Image src='imageURL' />, document.getElementById('root'))
-```
-
-*Make sure you add this to your stylesheet:
-
-```css
-.pimg { width: 500px; } // You should change this to the width of your choice
-
-.pimg__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
-```
-
-#### Usage with Thumbnail
-```js
-import Image from 'pimg'; // react
-import Image from 'pimg/dist/preact'; //preact
-// Thumbnail on Vue is a WIP
-
-render(<Image src='imageURL'><Thumbnail src='thumbnailURL'/></Image>, document.getElementById('root'))
-```
-
-*Make sure you add this to your stylesheet:
-
-```css
-.pimg { width: 500px; } // You should change this to the width of your choice
-
-.pimg__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
-```
-
-#### Custom ClassName
-Components(Image and Thumbnail) now supports custom classNames which will be used if provided.
-
-```js
-import Image from 'pimg'; // react
-import Image from 'pimg/dist/preact'; //preact
-
-render(<Image className="myImage" src='imageURL' />, document.getElementById('root'))
-```
-
-*Then your stylesheet:
-
-```css
-.myImage { width: 500px; } // You should change this to the width of your choice
-
-.myImage__loading { filter: blur(5vw); transform: scale(1.05); } // This makes the thumbnail blurry
-```
-
-`loadingClassName` should be passed essentially if you have more than a className attached or just for better customization.
-
-```js
-render(<Image className="myImage" loadingClassName="myImage_is_loading" src="imageURL" />)
-```
-```css
-.myImage_is_loading{/* Some stylesheet */}
-```
-
-
-### Examples
-
- - [Simple React Example](https://codesandbox.io/s/jzn7q44zzv)
- - [Simple Preact Example](https://codesandbox.io/s/ppwykw3w9m)
-
-### Goals
-
-- [x] Scroll to viewing of images.
-
-- [x] Support non-cloudinary images.
-
-- [ ] Working with other VDOM libraries.
-
-### Contributions
+## Contributions
 
 Feel free to send a PR.
 
@@ -121,7 +27,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars1.githubusercontent.com/u/11811904?v=4" width="100px;"/><br /><sub><b>マティアス</b></sub>](https://ademola.adegbuyi.me)<br />[💻](https://github.com/ooade/pimg/commits?author=ooade "Code") [📖](https://github.com/ooade/pimg/commits?author=ooade "Documentation") [⚠️](https://github.com/ooade/pimg/commits?author=ooade "Tests") [💡](#example-ooade "Examples") | [<img src="https://avatars0.githubusercontent.com/u/5154605?v=4" width="100px;"/><br /><sub><b>Olushi Luqman O.</b></sub>](https://twitter.com/codeshifu)<br />[💻](https://github.com/ooade/pimg/commits?author=codeshifu "Code") |
+| [<img src="https://avatars1.githubusercontent.com/u/11811904?v=4" width="100px;"/><br /><sub><b>Ademola Adegbuyi</b></sub>](https://ademola.adegbuyi.me)<br />[💻](https://github.com/ooade/pimg/commits?author=ooade "Code") [📖](https://github.com/ooade/pimg/commits?author=ooade "Documentation") [⚠️](https://github.com/ooade/pimg/commits?author=ooade "Tests") [💡](#example-ooade "Examples") | [<img src="https://avatars0.githubusercontent.com/u/5154605?v=4" width="100px;"/><br /><sub><b>Olushi Luqman O.</b></sub>](https://twitter.com/codeshifu)<br />[💻](https://github.com/ooade/pimg/commits?author=codeshifu "Code") |
 | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

@@ -35,8 +35,6 @@ const config = (() => {
 			}
 		}
 
-		let randNumber = Math.random()
-
 		return {
 			getClassName: () => {
 				return className

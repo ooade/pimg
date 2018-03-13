@@ -17,11 +17,6 @@ To install:
 npm install --save pimg
 ```
 
-This assumes you are using [npm](https://www.npmjs.com/) as your package manager.
-
-## Documentation
-The documentation for this project can be found [here](https://ooade.gitbooks.io/pimg/).
-
 ## Contributions
 
 Feel free to send a PR.

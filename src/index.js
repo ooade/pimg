@@ -26,45 +26,31 @@ class Image extends Component {
 			.catch(err => console.log(err))
 	}
 
-	scroller = (src, imgTop) => {
-		if (window.scrollY >= imgTop && this.state.delayed) {
-			this.setState({ delayed: false })
-			this.fetchImage(src)
-		}
-	}
-
-	getYPosition = element => {
-		let yPosition = 0
-
-		while (element) {
-			yPosition += element.offsetTop - element.scrollTop + element.clientTop
-			element = element.offsetParent
-		}
-
-		return yPosition
-	}
-
 	delayFetchingImage = src => this.setState({ delayed: true })
 
 	dataSaverMode = src => this.delayFetchingImage(src)
 
 	image = () => this.imgElement
 
-	scrollToReveal(src) {
-		this.delayFetchingImage(src)
-		const image = this.image()
+	scrollToReveal = src => {
+		try {
+			let observer = new IntersectionObserver(entries => {
+				let image = entries[0]
 
-		window.addEventListener(
-			'scroll',
-			this.scroller.bind(this, src, this.getYPosition(image)),
-			false
-		)
+				if (image.isIntersecting) {
+					this.fetchImage(src)
+					this.setState({ delayed: false })
+					observer.disconnect()
+				}
+			})
 
-		window.addEventListener(
-			'resize',
-			this.scroller.bind(this, src, this.getYPosition(image)),
-			false
-		)
+			observer.observe(this.image())
+		} catch (_) {
+			// Fail gracefully
+			console.warn('ScrollToView not supported on this browser')
+			this.fetchImage(src)
+			this.setState({ delayed: false })
+		}
 	}
 
 	componentDidMount() {
@@ -85,11 +71,6 @@ class Image extends Component {
 
 			this.setThumbnail(thumbnail)
 		}
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener('scroll', this.scroller, false)
-		window.removeEventListener('resize', this.scroller, false)
 	}
 
 	shouldRenderButton(dataSaver) {

@@ -1,6 +1,6 @@
 ## React
 
-```js
+```jsx
 import Image from 'pimg';
 
 render(<Image src="someURL" />, document.querySelector('.root'));
@@ -8,7 +8,7 @@ render(<Image src="someURL" />, document.querySelector('.root'));
 
 ## Preact
 
-```js
+```jsx
 import Image from 'pimg/preact';
 
 render(<Image src="someURL" />, document.querySelector('.root'));

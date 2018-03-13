@@ -10,7 +10,7 @@ This is fairly easy to set-up.
 
 How it's done:
 
-```js
+```jsx
 import Image from 'pimg';
 
 render (<Image scrollToReveal src="someImageURL"/>);

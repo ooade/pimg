@@ -1,7 +1,5 @@
 # Features
 
----
-
 These are some basic features of pimg:
 
 * [DataSaver](/docs/features/data_saver.md) - Renders a button in the middle of the image, and fetches the image once the button is pressed.

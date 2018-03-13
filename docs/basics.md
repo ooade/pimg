@@ -43,5 +43,9 @@ import Image from 'pimg/vue';
 Vue.use(Image);
 ```
 
+### Cloudinary Images
+
+We added a first class support for images hosted on cloudinary, so you don't have to do anything.
+
 
 

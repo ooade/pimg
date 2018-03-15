@@ -7,14 +7,16 @@ class Image extends Component {
 		blob: null,
 		loading: true,
 		delayed: false,
-		thumbnail: null
+		placeholder: null
 	}
 
 	setBlob = blob => this.setState({ blob })
 
-	setThumbnail = thumbnail => this.setState({ thumbnail })
+	setPlaceholder = placeholder => this.setState({ placeholder })
 
 	setLoading = loading => this.setState({ loading })
+
+	delayFetchingImage = delayed => this.setState({ delayed })
 
 	fetchImage = src => {
 		fetch(src)
@@ -26,10 +28,6 @@ class Image extends Component {
 			.catch(err => console.log(err))
 	}
 
-	delayFetchingImage = src => this.setState({ delayed: true })
-
-	dataSaverMode = src => this.delayFetchingImage(src)
-
 	image = () => this.imgElement
 
 	scrollToReveal = src => {
@@ -39,7 +37,7 @@ class Image extends Component {
 
 				if (image.isIntersecting) {
 					this.fetchImage(src)
-					this.setState({ delayed: false })
+					this.delayFetchingImage(false)
 					observer.disconnect()
 				}
 			})
@@ -49,126 +47,81 @@ class Image extends Component {
 			// Fail gracefully
 			console.warn('ScrollToView not supported on this browser')
 			this.fetchImage(src)
-			this.setState({ delayed: false })
+			this.delayFetchingImage(false)
 		}
 	}
 
 	componentDidMount() {
-		const { children, dataSaver, src, scrollToReveal, thumbnail } = this.props
+		const { dataSaver, src, scrollToReveal, placeholder } = this.props
 
-		// No Child ? Assume it is a cloudinary image and fetch
-		if (!children) {
-			let thumbnail =
-				thumbnail || src.replace('/upload/', '/upload/c_thumb,w_30/')
+		// If it's a Cloudinary Image
+		if (src.includes('cloudinary')) {
+			let placeholder =
+				placeholder || src.replace('/upload/', '/upload/c_thumb,w_30/')
 
-			if (dataSaver || (dataSaver && scrollToReveal)) {
-				this.dataSaverMode(src)
-			} else if (!dataSaver && scrollToReveal) {
+				this.setPlaceholder(placeholder)
+		}
+
+			if (dataSaver) {
+				this.delayFetchingImage(true)
+			} else if (scrollToReveal) {
+				this.delayFetchingImage(true)
 				this.scrollToReveal(src)
 			} else {
 				this.fetchImage(src)
 			}
-
-			this.setThumbnail(thumbnail)
-		}
-	}
-
-	shouldRenderButton(dataSaver) {
-		if (!dataSaver) return
-
-		return (
-			<button
-				className="pimg__btn"
-				onClick={dataSaver ? () => this.fetchImage(this.props.src) : null}
-			>
-				Load image
-			</button>
-		)
 	}
 
 	render() {
 		const {
-			children,
 			className,
 			dataSaver,
 			loadingClassName,
-			scrollToReveal,
 			src,
-			thumbnail,
+			placeholder,
 			...rest
 		} = this.props
+
 		const { blob, loading } = this.state
 
-		// No Child ? Just Render as usual
-		if (!children) {
-			if (loading) {
-				const classes = className
-					? `${className} ${loadingClassName || className + '__loading'}`
-					: 'pimg pimg__loading'
-				return (
-					<div className="pimg__wrapper">
-						<img
-							className={classes}
-							src={thumbnail || this.state.thumbnail}
-							ref={i => (this.imgElement = i)}
-							{...rest}
-						/>
-						{this.shouldRenderButton(dataSaver)}
-					</div>
-				)
-			}
-
-			return (
-				<div className="pimg__wrapper">
-					<img
-						className={className ? className : 'pimg'}
-						src={blob}
-						{...rest}
-					/>
-				</div>
-			)
-		}
-
-		// If a child is found, clone and send some prop
-		return React.cloneElement(children, {
-			blob,
-			fetchImage: this.fetchImage,
-			image: src,
-			imageClassName: className,
-			loading,
-			setThumbnail: this.setThumbnail,
-			thumbnail
-		})
-	}
-}
-
-class Thumbnail extends Component {
-	componentDidMount() {
-		const { fetchImage, image, setThumbnail, src } = this.props
-
-		setThumbnail(src)
-
-		fetchImage(image)
-	}
-
-	render() {
-		const { blob, className, imageClassName, loading, thumbnail } = this.props
-
 		if (loading) {
+			const classes = className
+				? `${className} ${loadingClassName || className + '__loading'}`
+				: 'pimg pimg__loading'
+
 			return (
 				<img
-					className={
-						className && imageClassName
-							? `${className} ${imageClassName}`
-							: 'pimg pimg_loading'
-					}
-					src={thumbnail}
+					className={classes}
+					src={placeholder || this.state.placeholder}
+					ref={i => (this.imgElement = i)}
+					{...rest}
 				/>
 			)
 		}
 
+		if (dataSaver) {
+			<div className="pimg__wrapper">
+				<img
+					className={classes}
+					src={placeholder || this.state.placeholder}
+					ref={i => (this.imgElement = i)}
+					{...rest}
+				/>
+				<button
+					className="pimg__btn"
+					onClick={() => this.fetchImage(this.props.src)}
+				>
+					Load image
+				</button>
+			</div>
+		}
+
 		return (
-			<img className={imageClassName ? imageClassName : 'pimg'} src={blob} />
+			<img
+				className={className ? className : 'pimg'}
+				src={blob}
+				{...rest}
+			/>
 		)
 	}
 }
@@ -183,4 +136,3 @@ Image.defaultProps = {
 }
 
 export default Image
-export { Thumbnail }

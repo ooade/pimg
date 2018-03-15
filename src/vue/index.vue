@@ -3,7 +3,7 @@
 		<img
 		  v-if="loading"
 		  class="pimg pimg__loading"
-		  :src="thumb"
+		  :src="placeholder"
 		/>
 		<img
 		  v-else
@@ -15,16 +15,17 @@
 
 <script>
 export default {
+	name: 'pimg',
 	data: () => ({
 		loading: true,
 		blob: null,
-		thumb: null
+		placeholder: null
 	}),
 	props: ['src'],
 	mounted() {
-		let thumb = this.src.replace('/upload/', '/upload/c_thumb,w_30/')
+		let placeholder = this.src.replace('/upload/', '/upload/c_thumb,w_30/')
 
-		this.thumb = thumb
+		this.placeholder = placeholder
 		fetch(this.src)
 			.then(res => res.blob())
 			.then(res => {

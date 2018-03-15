@@ -1,4 +1,4 @@
-import {h,  Component } from 'preact'
+import { h, Component } from 'preact'
 import PropTypes from 'prop-types'
 import 'whatwg-fetch'
 
@@ -30,7 +30,7 @@ class Image extends Component {
 
 	image = () => this.imgElement
 
-	scrollToReveal = src => {
+	fetchOnDemand = src => {
 		try {
 			let observer = new IntersectionObserver(entries => {
 				let image = entries[0]
@@ -52,24 +52,24 @@ class Image extends Component {
 	}
 
 	componentDidMount() {
-		const { dataSaver, src, scrollToReveal, placeholder } = this.props
+		const { dataSaver, src, fetchOnDemand, placeholder } = this.props
 
 		// If it's a Cloudinary Image
 		if (src.includes('cloudinary')) {
 			let placeholder =
 				placeholder || src.replace('/upload/', '/upload/c_thumb,w_30/')
 
-				this.setPlaceholder(placeholder)
+			this.setPlaceholder(placeholder)
 		}
 
-			if (dataSaver) {
-				this.delayFetchingImage(true)
-			} else if (scrollToReveal) {
-				this.delayFetchingImage(true)
-				this.scrollToReveal(src)
-			} else {
-				this.fetchImage(src)
-			}
+		if (dataSaver) {
+			this.delayFetchingImage(true)
+		} else if (fetchOnDemand) {
+			this.delayFetchingImage(true)
+			this.fetchOnDemand(src)
+		} else {
+			this.fetchImage(src)
+		}
 	}
 
 	render() {
@@ -100,28 +100,26 @@ class Image extends Component {
 		}
 
 		if (dataSaver) {
-			<div className="pimg__wrapper">
-				<img
-					className={classes}
-					src={placeholder || this.state.placeholder}
-					ref={i => (this.imgElement = i)}
-					{...rest}
-				/>
-				<button
-					className="pimg__btn"
-					onClick={() => this.fetchImage(this.props.src)}
-				>
-					Load image
-				</button>
-			</div>
+			return (
+				<div className="pimg__wrapper">
+					<img
+						className={classes}
+						src={placeholder || this.state.placeholder}
+						ref={i => (this.imgElement = i)}
+						{...rest}
+					/>
+					<button
+						className="pimg__btn"
+						onClick={() => this.fetchImage(this.props.src)}
+					>
+						Load image
+					</button>
+				</div>
+			)
 		}
 
 		return (
-			<img
-				className={className ? className : 'pimg'}
-				src={blob}
-				{...rest}
-			/>
+			<img className={className ? className : 'pimg'} src={blob} {...rest} />
 		)
 	}
 }

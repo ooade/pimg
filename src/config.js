@@ -3,6 +3,7 @@
  * @instance instance
  * @prop {String} className - The default className's for your PIMG(s)
  * @prop {String} placeholderClassName - The default placeholder className's for your image(s)
+ * @prop {Function} onError - Determines how errors are handled in the component
  * @prop {Boolean | Object} dataSaver - Choose to use dataSaver mode
  * @prop {String} dataSaver.wrapperClassName - DataSaver wrapper className
  * @prop {String} dataSaver.buttonClassName - DataSaver button className
@@ -14,11 +15,9 @@ const config = (() => {
 	const init = ({
 		className = 'pimg',
 		dataSaver = false,
+		onError = () => {},
 		placeholderClassName = 'pimg__thumbnail'
 	} = {}) => {
-		className = className
-		dataSaver = dataSaver
-		placeholderClassName = placeholderClassName
 
 		let wrapperClassName = 'pimg_wrapper',
 			buttonClassName = 'pimg_btn'
@@ -41,6 +40,9 @@ const config = (() => {
 			},
 			getDataSaver: () => {
 				return dataSaver
+			},
+			getErrorHandler: () => {
+				return onError
 			},
 			getPlaceholderClassName: () => {
 				return placeholderClassName

@@ -8,6 +8,8 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/codemirror.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/theme/material.min.css">
 	<link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>manifest.json">
 	<% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
 		<meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
@@ -24,12 +26,14 @@
 										<% } %>
 </head>
 
-<body>
+<body class="container-fluid">
 	<%= htmlWebpackPlugin.options.ssr({
 			url: '/'
 		}) %>
 		<script defer src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
-		<script>window.fetch || document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
+		<script>
+			window.fetch || document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')
+		</script>
 </body>
 
 </html>

@@ -76,6 +76,7 @@ class Image extends Component {
 		const {
 			className,
 			dataSaver,
+			fetchOnDemand,
 			loadingClassName,
 			src,
 			placeholder,
@@ -84,22 +85,11 @@ class Image extends Component {
 
 		const { blob, loading } = this.state
 
-		if (loading) {
-			const classes = className
-				? `${className} ${loadingClassName || className + '__loading'}`
-				: 'pimg pimg__loading'
+		const classes = className
+			? `${className} ${loadingClassName || className + '__loading'}`
+			: 'pimg pimg__loading'
 
-			return (
-				<img
-					className={classes}
-					src={placeholder || this.state.placeholder}
-					ref={i => (this.imgElement = i)}
-					{...rest}
-				/>
-			)
-		}
-
-		if (dataSaver) {
+		if (dataSaver && loading) {
 			return (
 				<div className="pimg__wrapper">
 					<img
@@ -115,6 +105,17 @@ class Image extends Component {
 						Load image
 					</button>
 				</div>
+			)
+		}
+
+		if (loading) {
+			return (
+				<img
+					className={classes}
+					src={placeholder || this.state.placeholder}
+					ref={i => (this.imgElement = i)}
+					{...rest}
+				/>
 			)
 		}
 

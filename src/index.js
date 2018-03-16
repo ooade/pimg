@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import 'whatwg-fetch'
 
+import config from './config'
+
 class Image extends Component {
 	state = {
 		blob: null,
@@ -25,7 +27,6 @@ class Image extends Component {
 				this.setBlob(URL.createObjectURL(res))
 				this.setLoading(false)
 			})
-			.catch(err => console.log(err))
 	}
 
 	image = () => this.imgElement
@@ -54,17 +55,19 @@ class Image extends Component {
 	componentDidMount() {
 		const { dataSaver, src, fetchOnDemand, placeholder } = this.props
 
+		const { getDataSaver, getFetchOnDemand } = config()
+
 		// If it's a Cloudinary Image
-		if (src.includes('cloudinary')) {
+		if (src && src.includes('cloudinary')) {
 			let placeholder =
 				placeholder || src.replace('/upload/', '/upload/c_thumb,w_30/')
 
 			this.setPlaceholder(placeholder)
 		}
 
-		if (dataSaver) {
+		if (dataSaver || getDataSaver()) {
 			this.delayFetchingImage(true)
-		} else if (fetchOnDemand) {
+		} else if (fetchOnDemand || getFetchOnDemand()) {
 			this.delayFetchingImage(true)
 			this.fetchOnDemand(src)
 		} else {
@@ -76,8 +79,10 @@ class Image extends Component {
 		const {
 			className,
 			dataSaver,
+			// we don't actually need fetchOnDemand here,
+			// added it so we can append the [rest] props
 			fetchOnDemand,
-			loadingClassName,
+			placeholderClassName,
 			src,
 			placeholder,
 			...rest
@@ -85,13 +90,21 @@ class Image extends Component {
 
 		const { blob, loading } = this.state
 
+		const {
+			getButtonClassName,
+			getClassName,
+			getPlaceholderClassName,
+			getWrapperClassName
+		} = config()
+
 		const classes = className
-			? `${className} ${loadingClassName || className + '__loading'}`
-			: 'pimg pimg__loading'
+			? `${className || getClassName()} ${placeholderClassName ||
+					getPlaceholderClassName()}`
+			: `${getClassName()} ${getPlaceholderClassName()}`
 
 		if (dataSaver && loading) {
 			return (
-				<div className="pimg__wrapper">
+				<div className={getWrapperClassName()}>
 					<img
 						className={classes}
 						src={placeholder || this.state.placeholder}
@@ -99,7 +112,7 @@ class Image extends Component {
 						{...rest}
 					/>
 					<button
-						className="pimg__btn"
+						className={getButtonClassName()}
 						onClick={() => this.fetchImage(this.props.src)}
 					>
 						Load image
@@ -120,18 +133,17 @@ class Image extends Component {
 		}
 
 		return (
-			<img className={className ? className : 'pimg'} src={blob} {...rest} />
+			<img
+				className={className ? className : getClassName()}
+				src={blob}
+				{...rest}
+			/>
 		)
 	}
 }
 
 Image.propTypes = {
 	src: PropTypes.string.isRequired
-}
-
-Image.defaultProps = {
-	dataSaver: false,
-	src: ''
 }
 
 export default Image

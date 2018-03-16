@@ -8,6 +8,8 @@ configure({ adapter: new Adapter() })
 
 import Image from '../src/'
 
+import config from '../src/config'
+
 const image =
 	'https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg'
 
@@ -30,41 +32,47 @@ describe('Image', () => {
 		}
 	})
 
-	test('src is emptyString if omitted', () => {
-		const component = mount(<Image/>)
-
-		expect(component.props().src).toBe('')
-	})
-
 	test('can take a placeholder prop', () => {
 		const component = mount(
-			<Image src={image} placeholder='http://myPlaceholder' />
+			<Image src={image} placeholder="http://myPlaceholder" />
 		)
 
 		expect(EnzymeToJSON(component)).toMatchSnapshot()
 	})
 
-	test('uses the default classNames when loading', () => {
+	test('uses the default classNames for placeholders', () => {
 		const component = mount(<Image src={image} />)
 
 		if (component.state().loading) {
-			expect(component.childAt(0).props().className).toBe('pimg pimg__loading')
+			expect(component.childAt(0).props().className).toBe(
+				'pimg pimg__placeholder'
+			)
 		}
 	})
 
-	test('uses the loadingClassName passed when loading', () => {
-		const component = mount(<Image className="myImage" loadingClassName="image_is_loading" src={image} />)
+	test('uses the placeholderClassName passed when loading', () => {
+		const component = mount(
+			<Image
+				className="myImage"
+				placeholderClassName="image_is_loading"
+				src={image}
+			/>
+		)
 
 		if (component.state().loading) {
-			expect(component.childAt(0).props().className).toBe('myImage image_is_loading')
+			expect(component.childAt(0).props().className).toBe(
+				'myImage image_is_loading'
+			)
 		}
 	})
 
-	test('appends `__loading` if loadingClassName isn\'t passed', () => {
+	test("appends `pimg__placeholder` if placeholderClassName isn't passed", () => {
 		const component = mount(<Image className="myImage" src={image} />)
 
 		if (component.state().loading) {
-			expect(component.childAt(0).props().className).toBe('myImage myImage__loading')
+			expect(component.childAt(0).props().className).toBe(
+				'myImage pimg__placeholder'
+			)
 		}
 	})
 })

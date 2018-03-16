@@ -13,15 +13,14 @@ const config = (() => {
 	let instance
 
 	const init = ({
+		buttonClassName = 'pimg__btn',
 		className = 'pimg',
 		dataSaver = false,
-		onError = () => {},
-		placeholderClassName = 'pimg__thumbnail'
+		fetchOnDemand = false,
+		error = null,
+		placeholderClassName = 'pimg__placeholder',
+		wrapperClassName = 'pimg__wrapper'
 	} = {}) => {
-
-		let wrapperClassName = 'pimg_wrapper',
-			buttonClassName = 'pimg_btn'
-
 		if (typeof dataSaver !== 'object' && dataSaver === true) {
 			dataSaver = {
 				wrapperClassName,
@@ -35,17 +34,29 @@ const config = (() => {
 		}
 
 		return {
+			onError: error => {
+				error = error
+			},
 			getClassName: () => {
 				return className
+			},
+			getButtonClassName: () => {
+				return buttonClassName
 			},
 			getDataSaver: () => {
 				return dataSaver
 			},
-			getErrorHandler: () => {
-				return onError
+			getError: cb => {
+				return cb(error)
+			},
+			getFetchOnDemand: () => {
+				return fetchOnDemand
 			},
 			getPlaceholderClassName: () => {
 				return placeholderClassName
+			},
+			getWrapperClassName: () => {
+				return wrapperClassName
 			}
 		}
 	}

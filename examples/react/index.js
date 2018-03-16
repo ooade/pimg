@@ -2,6 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Image from '../../src'
 
+import config from '../../src/config'
+
+config({
+	className: 'pimg'
+}).getError(error => {
+	if (error) {
+		console.log({ error })
+	}
+})
+
 import CodeMirror from 'react-codemirror'
 require('codemirror/mode/javascript/javascript')
 

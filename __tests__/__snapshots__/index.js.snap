@@ -2,12 +2,11 @@
 
 exports[`Image can take a placeholder prop 1`] = `
 <Image
-  dataSaver={false}
   placeholder="http://myPlaceholder"
   src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
 >
   <img
-    className="pimg pimg__loading"
+    className="pimg pimg__placeholder"
     src="http://myPlaceholder"
   />
 </Image>
@@ -15,11 +14,10 @@ exports[`Image can take a placeholder prop 1`] = `
 
 exports[`pimg renders correctly 1`] = `
 <Image
-  dataSaver={false}
   src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"
 >
   <img
-    className="pimg pimg__loading"
+    className="pimg pimg__placeholder"
     src="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_30/v1513979515/-895520106_m1whb3.jpg"
   />
 </Image>

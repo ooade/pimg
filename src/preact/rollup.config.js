@@ -12,7 +12,6 @@ export default {
 	plugins: [
 		babel({
 			exclude: 'node_modules/**',
-			presets: ['backpack'],
 			plugins: [['transform-react-jsx', { pragma: 'h' }], 'external-helpers']
 		})
 	],

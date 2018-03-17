@@ -13,8 +13,7 @@ export default {
 	plugins: [
 		vue(),
 		babel({
-			exclude: 'node_modules/**',
-			presets: ['backpack']
+			exclude: 'node_modules/**'
 		})
 	],
 	output: [

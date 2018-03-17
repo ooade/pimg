@@ -1,24 +1,20 @@
 {
 	"name": "pimg",
 	"version": "1.0.0-rc.2",
-	"description":
-		"Progressive Image Component (*Initially built for Cloudinary)",
+	"description": "Progressive Image Component (*Initially built for Cloudinary)",
 	"main": "dist/pimg.js",
 	"module": "dist/pimg.es.js",
 	"umd": "dist/pimg.umd.js",
 	"scripts": {
 		"build": "npm-run-all rollup rollup:* minify:* -s size",
 		"contributors:add": "all-contributors add",
-		"minify:cjs":
-			"uglifyjs $npm_package_main -cm -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
-		"minify:umd":
-			"uglifyjs $npm_package_umd -cm toplevel -o $npm_package_umd -p relative --in-source-map ${npm_package_umd}.map --source-map ${npm_package_umd}.map",
+		"minify:cjs": "uglifyjs $npm_package_main -cm -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
+		"minify:umd": "uglifyjs $npm_package_umd -cm toplevel -o $npm_package_umd -p relative --in-source-map ${npm_package_umd}.map --source-map ${npm_package_umd}.map",
 		"prepublish": "npm run build",
 		"rollup": "rollup -c rollup.config.js",
 		"rollup:preact": "rollup -c src/preact/rollup.config.js",
 		"rollup:vue": "rollup -c src/vue/rollup.config.js",
-		"size":
-			"echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_main | gzip-size)\"",
+		"size": "echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_main | gzip-size)\"",
 		"test": "jest"
 	},
 	"repository": {
@@ -38,7 +34,9 @@
 		"all-contributors-cli": "^4.10.1",
 		"babel-core": "^6.26.0",
 		"babel-plugin-external-helpers": "^6.22.0",
-		"babel-preset-backpack": "^0.4.3",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-plugin-transform-object-rest-spread": "^6.26.0",
+		"babel-preset-env": "^1.6.1",
 		"babel-preset-react": "^6.24.1",
 		"enzyme": "^3.2.0",
 		"enzyme-adapter-react-16": "^1.1.1",

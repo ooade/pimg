@@ -147,3 +147,5 @@ Image.propTypes = {
 }
 
 export default Image
+
+export { config }

@@ -8,7 +8,7 @@ configure({ adapter: new Adapter() })
 
 import Image from '../src/'
 
-import config from '../src/config'
+import { config } from '../src/'
 
 const image =
 	'https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg'

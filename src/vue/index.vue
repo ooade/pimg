@@ -121,4 +121,6 @@ export default {
 		}
 	}
 }
+
+export { config }
 </script>

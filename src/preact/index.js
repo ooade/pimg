@@ -46,7 +46,7 @@ class Image extends Component {
 			observer.observe(this.image())
 		} catch (_) {
 			// Fail gracefully
-			console.warn('ScrollToView not supported on this browser')
+			console.warn('fetchOnDemand not supported on this browser')
 			this.fetchImage(src)
 			this.delayFetchingImage(false)
 		}

@@ -78,7 +78,7 @@ export default {
 				observer.observe(this.$refs.image)
 			} catch (_) {
 				// Fail gracefully
-				console.warn('ScrollToView not supported on this browser', _)
+				console.warn('fetchOnDemand not supported on this browser', _)
 				this.fetchImage(this.src)
 				this.delayFetchingImage(false)
 			}

@@ -93,16 +93,18 @@ class Image extends Component {
 		const {
 			getButtonClassName,
 			getClassName,
+			getDataSaver,
 			getPlaceholderClassName,
 			getWrapperClassName
 		} = config()
 
 		const classes = className
-			? `${className || getClassName()} ${placeholderClassName ||
-					getPlaceholderClassName()}`
-			: `${getClassName()} ${getPlaceholderClassName()}`
+			? `${className} ${placeholderClassName || getPlaceholderClassName()}`
+			: placeholderClassName
+				? `${className || getClassName()} ${placeholderClassName}`
+				: `${getClassName()} ${getPlaceholderClassName()}`
 
-		if (dataSaver && loading) {
+		if ((dataSaver || getDataSaver()) && loading) {
 			return (
 				<div className={getWrapperClassName()}>
 					<img

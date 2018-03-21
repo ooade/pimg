@@ -17,6 +17,9 @@ To install:
 npm install --save pimg
 ```
 
+## Documentation
+https://ooade.gitbooks.io/pimg/
+
 ## Contributions
 
 Feel free to send a PR.

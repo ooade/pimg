@@ -34,18 +34,19 @@ render(<Image src="someURL" />, document.querySelector('.root'));
 </script>
 ```
 
-#### Plugin \[WIP\]
+#### Globally
 
 ```js
+//------------------
+// index.vue, maybe?
+//------------------
 import Vue from 'vue';
-import Image from 'pimg/vue';
+import pimg from 'pimg/vue';
 
-Vue.use(Image);
+Vue.component('pimg', pimg);
 ```
 
 ### Cloudinary Images
 
 We added a first class support for images hosted on cloudinary, so you don't have to do anything.
-
-
 

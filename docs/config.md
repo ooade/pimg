@@ -4,8 +4,6 @@ This allows you to add some sensible defaults to your Progressive Image Componen
 
 > Note: Image elements props have higher priorities than the props passed to the global config
 
-
-
 **Config Structure**:
 
 ```js
@@ -34,6 +32,8 @@ const ImageDefaults = config({
     }
 });
 ```
+
+> Quick Note: Component props has higher priority than global config.
 
 
 

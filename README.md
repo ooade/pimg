@@ -14,7 +14,7 @@ It's just 20 Bytes (gzipped).
 To install:
 
 ```
-npm install --save pimg
+npm install --save pimg@next
 ```
 
 ## Documentation

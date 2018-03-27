@@ -75,6 +75,18 @@ class Image extends Component {
 		}
 	}
 
+	componentWillReceiveProps({ dataSaver, src }) {
+		// This will help when toggling DataSaver mode
+		const { getDataSaver } = config()
+
+		if (dataSaver || getDataSaver()) {
+			this.delayFetchingImage(true)
+		} else {
+			this.delayFetchingImage(false)
+			this.fetchImage(src)
+		}
+	}
+
 	render() {
 		const {
 			className,
@@ -88,7 +100,7 @@ class Image extends Component {
 			...rest
 		} = this.props
 
-		const { blob, loading } = this.state
+		const { blob, delayed, loading } = this.state
 
 		const {
 			getButtonClassName,
@@ -104,7 +116,9 @@ class Image extends Component {
 				? `${className || getClassName()} ${placeholderClassName}`
 				: `${getClassName()} ${getPlaceholderClassName()}`
 
-		if ((dataSaver || getDataSaver()) && loading) {
+
+		// @props delayed for unaccounted state change
+		if (((dataSaver || getDataSaver()) && loading) || delayed ){
 			return (
 				<div className={getWrapperClassName()}>
 					<img

@@ -2,23 +2,27 @@ import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 
 const style = `
+.block {
+	margin: 20px;
+	background-color: #ddd;
+}
 .pimg {
-	height: 500px;
-	border: 1px solid red;
+	height: 300px;
 }
 .pimg__placeholder {
+	height: 300px;
 	border: 1px solid #ddd;
-	filter: blur(1vw);
+	filter: blur(5px);
 }
 .pimg__wrapper {
-	display: inline-block !important;
-	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center
 }
 .pimg__btn {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	position:absolute;
+	height: 40px;
 	border: 2px solid #fff;
 	border-radius: 20px;
 	font-size: 14px;

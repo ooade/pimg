@@ -234,6 +234,7 @@ var Image = function (_Component) {
 			}).then(function (res) {
 				_this.setBlob(URL.createObjectURL(res));
 				_this.setLoading(false);
+				_this.delayFetchingImage(false);
 			});
 		}, _this.image = function () {
 			return _this.imgElement;
@@ -284,7 +285,7 @@ var Image = function (_Component) {
 			if (dataSaver || getDataSaver()) {
 				this.delayFetchingImage(true);
 			} else if (fetchOnDemand || getFetchOnDemand()) {
-				this.delayFetchingImage(true);
+				this.setLoading(true);
 				this.fetchOnDemand(src);
 			} else {
 				this.fetchImage(src);
@@ -294,17 +295,21 @@ var Image = function (_Component) {
 		key: 'componentWillReceiveProps',
 		value: function componentWillReceiveProps(_ref2) {
 			var dataSaver = _ref2.dataSaver,
+			    fetchOnDemand = _ref2.fetchOnDemand,
 			    src = _ref2.src;
 
 			// This will help when toggling DataSaver mode
 			var _config2 = config(),
-			    getDataSaver = _config2.getDataSaver;
+			    getDataSaver = _config2.getDataSaver,
+			    getFetchOnDemand = _config2.getFetchOnDemand;
 
 			if (dataSaver || getDataSaver()) {
 				this.delayFetchingImage(true);
+			} else if (fetchOnDemand || getFetchOnDemand()) {
+				this.setLoading(true);
+				this.fetchOnDemand(src);
 			} else {
-				this.delayFetchingImage(false);
-				// this.fetchImage(src)
+				this.fetchImage(src);
 			}
 		}
 	}, {
@@ -334,6 +339,7 @@ var Image = function (_Component) {
 
 			var classes = className ? className + ' ' + (placeholderClassName || getPlaceholderClassName()) : placeholderClassName ? (className || getClassName()) + ' ' + placeholderClassName : getClassName() + ' ' + getPlaceholderClassName();
 
+			// @props delayed for unaccounted state change
 			if ((dataSaver || getDataSaver()) && loading || delayed) {
 				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'div',
@@ -6937,7 +6943,7 @@ var Index = function (_React$Component) {
 				),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'div',
-					null,
+					{ className: 'block' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_pimg__["a" /* default */], {
 						dataSaver: dataSaver,
 						src: 'https://res.cloudinary.com/stackpie/image/upload/v1522078692/owl-3218837_640_a0lavn.png'
@@ -6945,7 +6951,7 @@ var Index = function (_React$Component) {
 				),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'div',
-					null,
+					{ className: 'block' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_pimg__["a" /* default */], {
 						dataSaver: dataSaver,
 						src: 'https://res.cloudinary.com/stackpie/image/upload/v1522078701/dog-3216207_640_zyfari.png'
@@ -6953,8 +6959,9 @@ var Index = function (_React$Component) {
 				),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'div',
-					null,
+					{ className: 'block' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_pimg__["a" /* default */], {
+						dataSaver: dataSaver,
 						fetchOnDemand: true,
 						src: 'https://res.cloudinary.com/stackpie/image/upload/v1522078744/hare-3232830_640_zxlnkk.png'
 					})

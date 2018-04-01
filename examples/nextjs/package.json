@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "next"
+		"dev": "next",
+		"start": "next start"
 	},
 	"author": "",
 	"license": "MIT",

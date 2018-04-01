@@ -26,6 +26,7 @@ class Image extends Component {
 			.then(res => {
 				this.setBlob(URL.createObjectURL(res))
 				this.setLoading(false)
+				this.delayFetchingImage(false)
 			})
 	}
 
@@ -68,21 +69,23 @@ class Image extends Component {
 		if (dataSaver || getDataSaver()) {
 			this.delayFetchingImage(true)
 		} else if (fetchOnDemand || getFetchOnDemand()) {
-			this.delayFetchingImage(true)
+			this.setLoading(true)
 			this.fetchOnDemand(src)
 		} else {
 			this.fetchImage(src)
 		}
 	}
 
-	componentWillReceiveProps({ dataSaver, src }) {
+	componentWillReceiveProps({ dataSaver, fetchOnDemand, src }) {
 		// This will help when toggling DataSaver mode
-		const { getDataSaver } = config()
+		const { getDataSaver, getFetchOnDemand } = config()
 
 		if (dataSaver || getDataSaver()) {
 			this.delayFetchingImage(true)
+		} else if (fetchOnDemand || getFetchOnDemand()) {
+			this.setLoading(true)
+			this.fetchOnDemand(src)
 		} else {
-			this.delayFetchingImage(false)
 			this.fetchImage(src)
 		}
 	}
@@ -116,9 +119,8 @@ class Image extends Component {
 				? `${className || getClassName()} ${placeholderClassName}`
 				: `${getClassName()} ${getPlaceholderClassName()}`
 
-
 		// @props delayed for unaccounted state change
-		if (((dataSaver || getDataSaver()) && loading) || delayed ){
+		if (((dataSaver || getDataSaver()) && loading) || delayed) {
 			return (
 				<div className={getWrapperClassName()}>
 					<img

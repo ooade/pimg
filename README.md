@@ -6,6 +6,8 @@ It helps in lazy loading of images in a nice and cool way.
 
 It's just 20 Bytes (gzipped).
 
+It has first-class support for Cloudinary Images.
+
 [![build status](https://img.shields.io/travis/ooade/pimg/master.svg?style=flat-square)](https://travis-ci.org/ooade/pimg)
 [![npm version](https://img.shields.io/npm/v/pimg.svg?style=flat-square)](https://www.npmjs.com/package/pimg)
 [![npm downloads](https://img.shields.io/npm/dm/pimg.svg?style=flat-square)](https://www.npmjs.com/package/pimg)
@@ -14,7 +16,7 @@ It's just 20 Bytes (gzipped).
 To install:
 
 ```
-npm install --save pimg@next
+npm install --save pimg
 ```
 
 ## Documentation

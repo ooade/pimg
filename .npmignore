@@ -1,0 +1,6 @@
+# All distribution and node_modules shouldn't be tracked
+dist
+node_modules
+
+.cache
+.vscode

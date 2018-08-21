@@ -16,6 +16,7 @@
 		"rollup:preact": "rollup -c src/preact/rollup.config.js",
 		"rollup:vue": "rollup -c src/vue/rollup.config.js",
 		"size": "echo \"Gzipped Size: $(cat $npm_package_main | gzip | wc -c)\"",
+		"release": "npm t && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish",
 		"test": "jest"
 	},
 	"repository": {

@@ -8,16 +8,13 @@
 	"scripts": {
 		"build": "npm-run-all rollup rollup:* minify:* -s size",
 		"contributors:add": "all-contributors add",
-		"minify:cjs":
-			"uglifyjs $npm_package_main -cm -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
-		"minify:umd":
-			"uglifyjs $npm_package_umd -cm toplevel -o $npm_package_umd -p relative --in-source-map ${npm_package_umd}.map --source-map ${npm_package_umd}.map",
+		"minify:cjs": "uglifyjs $npm_package_main -cm -o $npm_package_main -p relative --in-source-map ${npm_package_main}.map --source-map ${npm_package_main}.map",
+		"minify:umd": "uglifyjs $npm_package_umd -cm toplevel -o $npm_package_umd -p relative --in-source-map ${npm_package_umd}.map --source-map ${npm_package_umd}.map",
 		"prepublish": "npm run build",
 		"rollup": "rollup -c rollup.config.js",
 		"rollup:preact": "rollup -c src/preact/rollup.config.js",
 		"rollup:vue": "rollup -c src/vue/rollup.config.js",
-		"size":
-			"echo \"Gzipped Size: $(strip-json-comments --no-whitespace $npm_package_main | gzip-size)\"",
+		"size": "echo \"Gzipped Size: $(cat $npm_package_main | gzip | wc -c)\"",
 		"test": "jest"
 	},
 	"repository": {
@@ -54,7 +51,6 @@
 		"rollup": "^0.53.0",
 		"rollup-plugin-babel": "^3.0.3",
 		"rollup-plugin-vue": "^3.0.0",
-		"strip-json-comments": "^2.0.1",
 		"uglifyjs": "^2.4.11",
 		"vue-template-compiler": "^2.5.13",
 		"whatwg-fetch": "^2.0.3"

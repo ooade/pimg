@@ -1,3 +1,7 @@
+## Importing Non-React Packages in V1.0.0 Below
+
+The Old version of Pimg could not grab the package from the root path. So, one would have to `import from /dist/[vue|preact]/` but that has been added to the latest version.
+
 ## React
 
 ```jsx
@@ -9,14 +13,14 @@ render(<Image src="someURL" />, document.querySelector('.root'))
 ## Preact
 
 ```jsx
-import Image from 'pimg/dist/preact'
+import Image from 'pimg/preact' //v1.1.0
 
 render(<Image src="someURL" />, document.querySelector('.root'))
 ```
 
 ## Vue
 
-#### Independently
+### Independently
 
 ```js
 <template>
@@ -34,14 +38,14 @@ render(<Image src="someURL" />, document.querySelector('.root'))
 </script>
 ```
 
-#### Globally
+### Globally
 
 ```js
 //------------------
 // index.vue, maybe?
 //------------------
 import Vue from 'vue'
-import pimg from 'pimg/dist/vue'
+import pimg from 'pimg/vue' //v1.1.0
 
 Vue.component('pimg', pimg)
 ```

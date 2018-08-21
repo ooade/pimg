@@ -1,4 +1,11 @@
-node_modules
+# All distribution and node_modules shouldn't be tracked
 dist
+node_modules
+
+# Do not track these root distributions
+/vue
+/preact
+
+
 .cache
 .vscode

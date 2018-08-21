@@ -5,7 +5,7 @@ import path from 'path'
 let pkg = require('../../package.json')
 
 const rename = name =>
-	path.resolve(name.replace('dist/', 'dist/vue/').replace('/pimg', '/index'))
+	path.resolve(name.replace('dist', 'vue').replace('pimg', 'index'))
 
 export default {
 	input: path.join(__dirname + '/index.vue'),

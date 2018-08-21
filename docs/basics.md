@@ -1,17 +1,17 @@
 ## React
 
 ```jsx
-import Image from 'pimg';
+import Image from 'pimg'
 
-render(<Image src="someURL" />, document.querySelector('.root'));
+render(<Image src="someURL" />, document.querySelector('.root'))
 ```
 
 ## Preact
 
 ```jsx
-import Image from 'pimg/preact';
+import Image from 'pimg/dist/preact'
 
-render(<Image src="someURL" />, document.querySelector('.root'));
+render(<Image src="someURL" />, document.querySelector('.root'))
 ```
 
 ## Vue
@@ -24,7 +24,7 @@ render(<Image src="someURL" />, document.querySelector('.root'));
 </template>
 
 <script type="text/javascript">
-    import pimg from 'pimg/vue';
+    import pimg from 'pimg/dist/vue';
 
     export default {
     components: {
@@ -40,13 +40,12 @@ render(<Image src="someURL" />, document.querySelector('.root'));
 //------------------
 // index.vue, maybe?
 //------------------
-import Vue from 'vue';
-import pimg from 'pimg/vue';
+import Vue from 'vue'
+import pimg from 'pimg/dist/vue'
 
-Vue.component('pimg', pimg);
+Vue.component('pimg', pimg)
 ```
 
 ### Cloudinary Images
 
 We added a first class support for images hosted on cloudinary, so you don't have to do anything.
-

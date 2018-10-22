@@ -8,11 +8,11 @@
 		</div>
 		<div class="item">
 			<h1>DataSaver Mode</h1>
-		<pimg dataSaver src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"/>
+		<pimg data-saver src="https://res.cloudinary.com/stackpie/image/upload/v1513979515/-895520106_m1whb3.jpg"/>
 		</div>
 		<div class="item">
 			<h1>FetchOnDemand Mode</h1>
-			<pimg fetchOnDemand src="https://res.cloudinary.com/stackpie/image/upload/v1513965940/1_znfymp.jpg"/>
+			<pimg fetch-on-demand src="https://res.cloudinary.com/stackpie/image/upload/v1513965940/1_znfymp.jpg"/>
 		</div>
 		</div>
 </template>

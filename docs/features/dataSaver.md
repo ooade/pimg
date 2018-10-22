@@ -18,7 +18,7 @@ Also works in **Vue**:
 
 ```js
 <template>
-    <Image dataSaver src="someImageURL"/>
+    <Image data-saver src="someImageURL"/>
 </template>
 ```
 

@@ -21,5 +21,4 @@ let observer = new IntersectionObserver(entries => {
 observer.observe(this.image())
 ```
 
-
-
+It's worth pointing out that, unless your CSS specifies otherwise, the placeholder elements will be zero height. It's recommended that you make the dimensions of the placeholder as close as you can to the image being loaded via CSS and the `placeholderClassName` setting (default is `.pimg__placeholder`.)

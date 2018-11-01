@@ -18,7 +18,7 @@ Also works in **Vue**:
 
 ```js
 <template>
-    <Image fetchOnDemand src="someImageURL"/>
+    <Image fetch-on-demand src="someImageURL"/>
 </template>
 ```
 

@@ -28,6 +28,7 @@ class Image extends Component {
 				this.setLoading(false)
 				this.delayFetchingImage(false)
 			})
+			.catch(console.log)
 	}
 
 	image = () => this.imgElement
@@ -53,41 +54,44 @@ class Image extends Component {
 		}
 	}
 
-	componentDidMount() {
-		const { dataSaver, src, fetchOnDemand, placeholder } = this.props
+	shouldFetchOnDemand = src => {
+		this.setLoading(true)
+		this.fetchOnDemand(src)
+	}
 
+	cloudinaryImagePlaceholder = imgSrc =>
+		imgSrc.replace('/upload/', '/upload/c_thumb,w_30/')
+
+	firstClassSupportCloudinaryImage = () => {
+		const { src, placeholder } = this.props
+		try {
+			const { host: imgHost } = new URL(src)
+			imgHost.includes('cloudinary')
+				? this.setPlaceholder(this.cloudinaryImagePlaceholder(src))
+				: this.setPlaceholder(placeholder)
+		} catch (error) {
+			console.log('Invalid image source.')
+		}
+	}
+
+	decideFetchMode = props => {
+		const { dataSaver, fetchOnDemand, src } = props || this.props
 		const { getDataSaver, getFetchOnDemand } = config()
 
-		// If it's a Cloudinary Image
-		if (src && src.includes('cloudinary')) {
-			let placeholder =
-				placeholder || src.replace('/upload/', '/upload/c_thumb,w_30/')
+		if (dataSaver || getDataSaver()) this.delayFetchingImage(true)
+		else if (fetchOnDemand || getFetchOnDemand()) this.shouldFetchOnDemand(src)
+		else this.fetchImage(src)
+	}
 
-			this.setPlaceholder(placeholder)
-		}
-
-		if (dataSaver || getDataSaver()) {
-			this.delayFetchingImage(true)
-		} else if (fetchOnDemand || getFetchOnDemand()) {
-			this.setLoading(true)
-			this.fetchOnDemand(src)
-		} else {
-			this.fetchImage(src)
-		}
+	componentDidMount() {
+		this.firstClassSupportCloudinaryImage()
+		this.decideFetchMode()
 	}
 
 	componentWillReceiveProps({ dataSaver, fetchOnDemand, src }) {
 		// This will help when toggling DataSaver mode
-		const { getDataSaver, getFetchOnDemand } = config()
-
-		if (dataSaver || getDataSaver()) {
-			this.delayFetchingImage(true)
-		} else if (fetchOnDemand || getFetchOnDemand()) {
-			this.setLoading(true)
-			this.fetchOnDemand(src)
-		} else {
-			this.fetchImage(src)
-		}
+		const props = { dataSaver, fetchOnDemand, src }
+		this.decideFetchMode(props)
 	}
 
 	render() {

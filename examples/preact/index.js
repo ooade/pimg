@@ -43,12 +43,20 @@ const SimpleImplementation = () => (
 		<Image
 			className="myImage"
 			dataSaver
+<<<<<<< HEAD
 			src="https://res.cloudinary.com/dsevf03vj/image/upload/v1540223649/captain_america_the_winter_soldier_steve_rogers_chris_evans_captain_america_93014_1440x900_gwf6dh.jpg"
+=======
+			src="https://res.cloudinary.com/stackpie/image/upload/v1548971216/portfolio/outfit.png"
+>>>>>>> Update images in examples
 		/>
 		{Editor(`<Image
 				className="myImage"
 				dataSaver
+<<<<<<< HEAD
 				src="https://res.cloudinary.com/dsevf03vj/image/upload/v1540223649/captain_america_the_winter_soldier_steve_rogers_chris_evans_captain_america_93014_1440x900_gwf6dh.jpg"
+=======
+				src="https://res.cloudinary.com/stackpie/image/upload/v1548971216/portfolio/outfit.png"
+>>>>>>> Update images in examples
 		/>`)}
 	</Provider>
 )
@@ -57,6 +65,7 @@ const WithPlaceholder = () => (
 	<Provider title="Custom Placeholder">
 		<Image
 			className="myImage"
+<<<<<<< HEAD
 			src="https://res.cloudinary.com/dsevf03vj/image/upload/v1540223761/night_sky_snow-wallpaper-1440x900_b8bta9.jpg"
 			placeholder="https://res.cloudinary.com/dsevf03vj/image/upload/c_thumb,w_10/v1540223761/night_sky_snow-wallpaper-1440x900_b8bta9.jpg"
 		/>
@@ -64,6 +73,15 @@ const WithPlaceholder = () => (
 			className="myImage"
 			src="https://res.cloudinary.com/dsevf03vj/image/upload/v1540223761/night_sky_snow-wallpaper-1440x900_b8bta9.jpg"
 			placeholder="https://res.cloudinary.com/dsevf03vj/image/upload/c_thumb,w_10/v1540223761/night_sky_snow-wallpaper-1440x900_b8bta9.jpg"
+=======
+			src="https://res.cloudinary.com/stackpie/image/upload/v1548971216/portfolio/outfit.png"
+			placeholder="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_10/v1548971216/portfolio/outfit.png"
+		/>
+		{Editor(`<Image
+			className="myImage"
+			src="https://res.cloudinary.com/stackpie/image/upload/v1548971216/portfolio/outfit.png"
+			placeholder="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_10/v1548971216/portfolio/outfit.png"
+>>>>>>> Update images in examples
 		/>`)}
 	</Provider>
 )
@@ -75,14 +93,22 @@ const FetchOnDemand = () => (
 			fetchOnDemand
 			dataSaver
 			style={{ width: 200 }}
+<<<<<<< HEAD
 			src="https://res.cloudinary.com/dsevf03vj/image/upload/v1540223719/naruto_uzumaki_naruto_ninja_113276_1440x900_rwgddw.jpg"
+=======
+			src="https://res.cloudinary.com/stackpie/image/upload/v1548971216/portfolio/outfit.png"
+>>>>>>> Update images in examples
 		/>
 		{Editor(`<Image
 			className="myImage"
 			fetchOnDemand
 			dataSaver
 			style={{ width: 200 }}
+<<<<<<< HEAD
 			src="https://res.cloudinary.com/dsevf03vj/image/upload/v1540223719/naruto_uzumaki_naruto_ninja_113276_1440x900_rwgddw.jpg"
+=======
+			src="https://res.cloudinary.com/stackpie/image/upload/v1548971216/portfolio/outfit.png"
+>>>>>>> Update images in examples
 		/>`)}
 	</Provider>
 )
@@ -92,12 +118,22 @@ const FetchOnDemandWithPlaceholderProp = () => (
 		<Image
 			className="myImage"
 			fetchOnDemand
+<<<<<<< HEAD
 			src="https://res.cloudinary.com/dsevf03vj/image/upload/v1540223766/dark_earth-wallpaper-1440x900_se1quy.jpg"
+=======
+			src="https://res.cloudinary.com/stackpie/image/upload/v1548971216/portfolio/outfit.png"
+			placeholder="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_10/v1548971216/portfolio/outfit.png"
+>>>>>>> Update images in examples
 		/>
 		{Editor(`<Image
 			className="myImage"
 			fetchOnDemand
+<<<<<<< HEAD
 			src="https://res.cloudinary.com/dsevf03vj/image/upload/v1540223766/dark_earth-wallpaper-1440x900_se1quy.jpg"
+=======
+			src="https://res.cloudinary.com/stackpie/image/upload/v1548971216/portfolio/outfit.png"
+			placeholder="https://res.cloudinary.com/stackpie/image/upload/c_thumb,w_10/v1548971216/portfolio/outfit.png"
+>>>>>>> Update images in examples
 		/>`)}
 	</Provider>
 )

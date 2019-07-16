@@ -154,6 +154,7 @@ class Image extends Component {
 			<img
 				className={className ? className : getClassName()}
 				src={blob}
+				ref={i => (this.imgElement = i)}
 				{...rest}
 			/>
 		)

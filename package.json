@@ -7,6 +7,8 @@
 	"umd": "dist/pimg.umd.js",
 	"files": [
 		"dist",
+		"preact",
+		"vue",
 		"README.md"
 	],
 	"scripts": {

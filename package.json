@@ -1,6 +1,6 @@
 {
 	"name": "pimg",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Progressive Image Component",
 	"main": "dist/pimg.js",
 	"module": "dist/pimg.es.js",
